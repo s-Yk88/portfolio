@@ -1,0 +1,20 @@
+{
+  "index.qmd": {
+    "index.html": "5195f6b3"
+  },
+  "about.qmd": {
+    "about.html": "0fae01d8"
+  },
+  "projects/cookiecats.qmd": {
+    "cookiecats.html": "d74f238b"
+  },
+  "projects/beans.qmd": {
+    "beans.html": "1af16399"
+  },
+  "projects/fashion.qmd": {
+    "fashion.html": "934c535c"
+  },
+  "projects/kpop.qmd": {
+    "kpop.html": "2c0133dd"
+  }
+}

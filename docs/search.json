@@ -1,0 +1,352 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Resume",
+    "section": "",
+    "text": "Programming Languages\nPython (Pandas, NumPy, Scikit-Learn, SciPy, Seaborn, Matplotlib, Prophet), SQL, R (ggplot2, tidyverse), SAS\n\n\nAnalytics/ Machine Learning\nLinear & Logistic Regression, Random Forest, Decision Tree, Time Series Forecasting, Gradient Boosting, Media Mix Modeling, Data Fusion, Classification, Clustering, Data Mining, Random Forest, Experimental Design\n\n\nPlatforms/ Tools\nSnowflake, AWS, BigQuery, GCP, Tableau, Google Analytics, Jupyter Notebooks, GitHub,  Microsoft Office\n\n\nLanguages\nEnglish, Japanese"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "Resume",
+    "section": "Experience:",
+    "text": "Experience:\nJunior Data Scientist | Paramount Global - New York, NY (Mar 2022 - Aug 2024)\n\nTools: Python, SQL, R, Snowflake, AWS, Tableau\n\n\nDeveloped and maintained media mix models to analyze cross-platform audience dynamics, quantifying how content exposure and distribution drove consumer behavior shifts, findings adopted by strategy and marketing teams to inform content planning and investment decisions.\nDesigned and implemented data pipelines integrating consumer survey and behavioral data to deliver ongoing insights into audience perceptions of brands and content, constantly redefining and updating success metrics in partnership with stakeholders to reflect evolving product and marketing priorities.\nConducted statistical modeling on large-scale behavioral and survey data to quantify how content distribution drove audience engagement, findings used to inform strategic distribution and content planning across streaming and linear platforms.\nPartnered with product, marketing, and strategy teams to define and track success metrics for new media initiatives, distilling complex analyses into clear, actionable recommendations and aligning stakeholders across diverse team structures.\nAuthored comprehensive technical documentation for modeling pipelines and analytical frameworks enabling reproducibility and knowledge transfer, reducing onboarding time and ensuring continuity across projects."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Resume",
+    "section": "Education",
+    "text": "Education\nGeorgia Institute of Technology | M.S., Analytics (Expected 2027)\n\nRelevant Classes: Computing for Data Analytics, Intro to Analytics Modeling, Data Analytics for Business, Statistical Modeling & Regression Analysis, Computational Data Analysis (Machine Learning)\n\nThe College of New Jersey | B.S. Mathematics (Statistics Specialization) (2019)\n\nRelevant Classes: Calculus (A,B,C), Linear Algebra, Design of Experiments, Sampling & Non-Parametric Statistics, Probability, Applied Multivariate Analysis, Regression, Statistical Quality Control, Computational & Bayesian Statistics, Mathematical Statistics"
+  },
+  {
+    "objectID": "about.html#certifications",
+    "href": "about.html#certifications",
+    "title": "Resume",
+    "section": "Certifications:",
+    "text": "Certifications:\nPython 3 Programming Specialization| University of Michigan (2023)\nSQL for Data Science with Google BigQuery | Udemy (2021)\nGoogle Analytics for Beginners | Google Analytics Academy (2020)\nFundamentals of Visualization with Tableau | UC Davis (2020)"
+  },
+  {
+    "objectID": "projects/cookiecats.html#methods",
+    "href": "projects/cookiecats.html#methods",
+    "title": "Improving Player Retention Through Experimental Design",
+    "section": "Methods:",
+    "text": "Methods:\n\nRetrospective Sensitivity Analysis/ Power Analysis\nA/B Testing of Binary & Continuous Variables:\n\nHypothesis Testing\n\n\\(X^2\\) test\nMann-Whitney U Test"
+  },
+  {
+    "objectID": "projects/cookiecats.html#tools-packages-used",
+    "href": "projects/cookiecats.html#tools-packages-used",
+    "title": "Improving Player Retention Through Experimental Design",
+    "section": "Tools/ Packages Used:",
+    "text": "Tools/ Packages Used:\n\nPython 3.13.3\n\npandas numpy matplotlib.pyplot statsmodel.stats pingouin\n\n\n  View Code on GitHub"
+  },
+  {
+    "objectID": "projects/cookiecats.html#in-brief",
+    "href": "projects/cookiecats.html#in-brief",
+    "title": "Improving Player Retention Through Experimental Design",
+    "section": "👾 In Brief",
+    "text": "👾 In Brief\n\nn= 90,189 players\nTarget Variables: sum_gamerounds retention_1 retention_7\nControl Group: gate_30 response group of version variable\nTest Group: gate_40 response group of version variable\nPlayers were randomly assigned at Install :::"
+  },
+  {
+    "objectID": "projects/cookiecats.html#primary-question",
+    "href": "projects/cookiecats.html#primary-question",
+    "title": "Improving Player Retention Through Experimental Design",
+    "section": "Primary Question",
+    "text": "Primary Question\n\nCan shifting a progression gate from level 30 to level 40 meaningfully improve player retention and engagement?\n\nTo evaluate the impact of shifting the progression gate, I analyzed:\n\n1 Day Retention\n7 Day Retention\nTotal Game Rounds Played\n\nEach metric captures a different stage of engagement: early return behavior, mid-term retention, and depth of game play."
+  },
+  {
+    "objectID": "projects/cookiecats.html#balance-check",
+    "href": "projects/cookiecats.html#balance-check",
+    "title": "Improving Player Retention Through Experimental Design",
+    "section": "Balance Check",
+    "text": "Balance Check\n\n\n\n\nBefore running any sort of experiment comparing the effects of different progression gates on retention, we need to check that there is balanced randomized assignment. Ultimately, we find that both groups have been assigned almost the same number of players each. The gate_30 group has 44700 players and the gate_40 group has 45489 players."
+  },
+  {
+    "objectID": "projects/cookiecats.html#day-retention",
+    "href": "projects/cookiecats.html#day-retention",
+    "title": "Improving Player Retention Through Experimental Design",
+    "section": "1 Day Retention",
+    "text": "1 Day Retention\nBoth gate versions happened to retain a little under half of their player samples after one day. The gate_30 group retains roughly 83.8% of its players and the gate_40 group retains about 83.0% of its players after 1 day. Below, we tracked the effect size given a variety of percentage point differences, the required sample size to achieve 80% power, and the actual power when n is 13,566.\n\n\n\n\n\n\n\n\n\nPercentage Point Difference\nEffect (Cohen’s h)\nRequired n per group (to achieve 80%)\nAchieved Power when n= 13,566\n\n\n\n\n0.5\n0.013\n~89626\n0.19\n\n\n0.8 (actual)\n0.022\n~33953\n0.43\n\n\n1\n0.027\n~21623\n0.61\n\n\n2\n0.055\n~5270\n0.994\n\n\n3\n0.083\n~2280\n1\n\n\n\nFor the actual difference between the retention rates, the achieved power is 43%, meaning that the reduced samples will not detect an effect of size 0.8. At n=13,566, we need a ~1.5% point difference to achieve 80% power."
+  },
+  {
+    "objectID": "projects/cookiecats.html#day-retention-1",
+    "href": "projects/cookiecats.html#day-retention-1",
+    "title": "Improving Player Retention Through Experimental Design",
+    "section": "7 Day Retention",
+    "text": "7 Day Retention\nAfter 7 days, there is drastic drop off in players in both versions. Like earlier, both versions seem to retain a similar amount of players. The gate_40 group retains about 50.3% after 7 days, while the gate_30 group retains about 48.5% of its players.\n\n\n\n\n\n\n\n\n\nPercentage Point Difference\nEffect (Cohen’s h)\nRequired n per group (to achieve 80%)\nAchieved Power when n= 13,566\n\n\n\n\n0.5\n0.010\n~156,784\n0.131\n\n\n1\n0.020\n~39,227\n0.380\n\n\n1.8 (actual)\n0.036\n~12,109\n0.846\n\n\n3\n0.060\n~4359\n0.999\n\n\n5\n0.100\n~1568\n1\n\n\n\nFor the actual percentage point difference between the gating groups, we find that the achieved power is 84.6%, meaning that the reduced samples will detect an effect of this size."
+  },
+  {
+    "objectID": "projects/cookiecats.html#total-games-played",
+    "href": "projects/cookiecats.html#total-games-played",
+    "title": "Improving Player Retention Through Experimental Design",
+    "section": "Total Games Played",
+    "text": "Total Games Played\n\n\nTo the right, we are checking the distribution of game rounds played by the players during the course of the first 7 days. We expect to see this skew right, indicating that most players only play a few rounds and only a few players play a large number of rounds. As we can see, the distribution shows just as we expected with a majority of players playing below 300 games and only a few making it to the 1000 round mark.\n\n\n\n\n\n\n\n\n\n\n\n\n\nEffect (Rank Biserial R-RBC)\nCohen’s d\nRequired n per group (to achieve 80%)\nAchieved Power when n= 13,566\n\n\n\n\n0.005\n0.010\n~156,974\n0.131\n\n\n0.013 (actual)\n0.026\n~22610\n0.587\n\n\n0.02\n0.040\n~9808\n0.911\n\n\n0.03\n0.060\n~4358\n0.999\n\n\n0.05\n0.100\n~1567\n1\n\n\n\nThe RBC of 0.013 indicates that gate_30 players only marginally outrank gate_40 players in total games played. More specifically, gate_30 players outrank gate_40 in approximately 50.7% of random pairings versus 49.35%. For this small effect, we find that the achieved power is 58.7%, meaning that the reduced samples will not detect an effect of this size.\nThis analysis reveals that early churn didn’t just reduce experiment relevance, it compromised the statistical sensitivity of two out of the three metrics. Only the 7-Day Retention is adequately powered enough to detect the observed effect.\nAs the lack of power in early return behavior (1-Day Retention) and gameplay depth (Total Game Rounds Played) measures leads us to a pretty high risk of type 2 error, I would want to rerun the experiment to have a sufficient number of respondents that reach the required levels to be affected by the progression gates. But for the purpose of practice, we will continue with these samples.\n\n\n\n\n\n\nTipPower Analysis Result\n\n\n\nBecause over 60% of players churned before reaching level 40, the effective sample size dropped to ~27K.\n\nEarly Return Behavior and Gameplay Depth are underpowered in detecting the current size of effect\nMid-Term Retention is adequately powered to detect the observed size of effect."
+  },
+  {
+    "objectID": "projects/cookiecats.html#chi-square-x2-test-of-independence",
+    "href": "projects/cookiecats.html#chi-square-x2-test-of-independence",
+    "title": "Improving Player Retention Through Experimental Design",
+    "section": "Chi Square (\\(X^2\\)) Test of Independence:",
+    "text": "Chi Square (\\(X^2\\)) Test of Independence:\nTo test the 1 day and 7 day retention metrics, I will use \\(X^2\\) tests as we are comparing 2 unpaired sample groups. \\(X^2\\) tests are generally used to examine whether 2 categorical variables are independent in influencing the test statistic.\n\n\n\n\nP-Values\n\n\n\n\n1 Day Retention\n0.10231\n\n\n7 Day Retention\n0.00333\n\n\n\nUsing \\(\\alpha\\)=0.05 as our significance level, we fail to reject the null hypothesis for the retention_1 variable and conclude there is no statistically significant difference in the 1 day retention metric between the different gate groups. However, as evidenced by retrospective sensitivity analysis, this test was inadequately powered (43%), thus this result should be considered with caution.\nIn comparison, we can reject the hypothesis for the retention_7 variable, concluding there is a statistically significant difference in the 7 day retention metric between the different level gate groups. The earlier sensitivity analysis concluded that this test is adequately powered (84.6%) to detect the observed effect (h=0.036) between the two groups, further validating the result.\nWhile the result of the 7 Day Retention test is promising, we do have to consider whether instituting a change for such a small effect is worth it. With a rough estimate of 2 million installs, this difference represents about 36,000 additional players being retained after a week."
+  },
+  {
+    "objectID": "projects/cookiecats.html#mann-whitney-u-test",
+    "href": "projects/cookiecats.html#mann-whitney-u-test",
+    "title": "Improving Player Retention Through Experimental Design",
+    "section": "Mann-Whitney U Test",
+    "text": "Mann-Whitney U Test\nTo test our continuous sum_gamerounds variable, I will use a Mann Whitney U Test. While we could have tried to use a t-test, our sum_gamerounds variable violates one very important assumption of the t-test: the data is not normally distributed (as seen in the retrospective power analysis). When we run the test, we find that:\n\n\n\nU-Statistic\n92552991.50\n\n\n\n\np-value\n0.05900\n\n\n\nAs our \\(\\alpha\\)=0.05 and the p-value is 0.06, convention would suggest that we fail to reject the hypothesis and conclude there is no statistically significant difference between the median number of rounds played in each group.\nHowever, the retrospective sensitivity analysis from earlier revealed that this test is only 59% powered to detect the observed effect (RBC=0.013), falling short of the conventional 80% power threshold. The required sample of ~22,600 per group exceeds what was available from the effective sample. As a result of this, the borderline p-value of 0.06 should be interpreted carefully.\n\n\n\n\n\n\nTipExperiment Results\n\n\n\nretention_1 : Fail to reject the null hypothesis and must conclude there is no statistically significant difference in the 1 day retention metric between the 2 versions. Early player churn compromises the test’s statistical sensitivity, so this result should be considered with caution.\nretention_7 : Can reject null hypothesis and conclude there is a statistically significant difference in the 7 day retention metric between the 2 different versions. While the test is adequately powered, the small observed difference between groups may not be enough to warrant actual changes.\nsum_gamerounds: Fail to reject the null hypothesis and conclude there is no statistically significant difference between the median number of rounds played in each group. However, as early player churn compromises the test’s statistical power, this result will be considered with caution."
+  },
+  {
+    "objectID": "projects/cookiecats.html#recommendations",
+    "href": "projects/cookiecats.html#recommendations",
+    "title": "Improving Player Retention Through Experimental Design",
+    "section": "Recommendations",
+    "text": "Recommendations\nIn light of these results, my main concern is what is happening during the earlier rounds of the game that is causing a majority of players to churn. Thus, this experiment should be ran again with progression gates at levels 5 and 10. Assuming that retention effects will be larger earlier in the game, the same sample sizes will give higher power."
+  },
+  {
+    "objectID": "projects/fashion.html",
+    "href": "projects/fashion.html",
+    "title": "Vestiaire Collective Listings Through Dashboards",
+    "section": "",
+    "text": "In an effort to better understand retail analytics, I took a look at a dataset containing 900k listings from Vestiaire Collective, an online marketplace for buying and reselling pre-owned luxury fashion items. Within these dashboards, I take a look at their marketplace, the products, the brands offered, the sellers providing the goods, and the key part of their supply chain: their warehouses.\n\n\n\n\n\n\nTipKey Takeaways\n\n\n\n\nWhile customers are eyeing products from lesser known brands, much of the supply on Vestiaire comes from well known luxury fashion houses like Chanel.\nThe most liked brands predominately sell accessories or shoes in contrast to the most listed item: men’s clothing\nThere are multiple warehouses in the US and France, home to the most sellers, but each country has an extra warehouse that is not commonly used.\n\n\n\n\n\n\nData Visualization\n\n\n\n\n\nPython 3.13.3\n\npandas\n\nTableau Public"
+  },
+  {
+    "objectID": "projects/fashion.html#methods",
+    "href": "projects/fashion.html#methods",
+    "title": "Vestiaire Collective Listings Through Dashboards",
+    "section": "",
+    "text": "Data Visualization"
+  },
+  {
+    "objectID": "projects/fashion.html#tools-packages-used",
+    "href": "projects/fashion.html#tools-packages-used",
+    "title": "Vestiaire Collective Listings Through Dashboards",
+    "section": "",
+    "text": "Python 3.13.3\n\npandas\n\nTableau Public"
+  },
+  {
+    "objectID": "projects/beans.html#methods",
+    "href": "projects/beans.html#methods",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Methods:",
+    "text": "Methods:\n\nMulti-Step Ahead Forecasting with Multiple Time Series\nNested Cross Validation"
+  },
+  {
+    "objectID": "projects/beans.html#model",
+    "href": "projects/beans.html#model",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Model:",
+    "text": "Model:\n\nGradient Boosted Tree Model"
+  },
+  {
+    "objectID": "projects/beans.html#tools-packages-used",
+    "href": "projects/beans.html#tools-packages-used",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Tools/ Packages Used:",
+    "text": "Tools/ Packages Used:\n\nGoogle BigQuery\nR Studio 4.1.0 (Forecasts & Forecast Visualizations)\n\nggplot2 lubridate tidyverse forecastML dtplyr glmnet xgboost\n\nPython 3.13.3 (2025 EDA Update)\n\npandas numpy pygwalker\n\nKanaries AI\n\ngraphic walker\n\n\n  View Code on GitHub"
+  },
+  {
+    "objectID": "projects/beans.html#food-security-the-environment",
+    "href": "projects/beans.html#food-security-the-environment",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Food Security & The Environment",
+    "text": "Food Security & The Environment\nFood production, food security, and climate change are inexplicably linked. According to the WFP,\n\n“ The Intergovernmental Panel on Climate Change in its 5th Assessment Report is clear: the advent of more frequent and intense disasters caused by climate change could negatively affect people’s ability to produce, access and consume food. “*\n\nUltimately impacting the price instability of food and putting the food security of vulnerable communities at risk. Thus, we must establish urgent and sustainable measures to ease pressure on agricultural ecosystems.\nTo read more about the 5th Assessment Report: PCC. 2015. Climate change 2014: Synthesis report. Geneva, Intergovernmental Panel on Climate Change.*\n\n\n\nSource: Our World in Data\n\n\nOne quarter of the world’s greenhouse gas (GHG) emissions come from food production. So it stands to reason that a possible start to a solution for food insecurity exacerbated by climate change would be shifting our focus to alternative food sources that emit less greenhouse gases into our atmosphere. As shown by the chart above, meat & dairy products like beef (beef herd), cheese & beef (dairy herd) emit large amounts of CO2 into the atmosphere. In comparison, Peas, other pulses, and groundnuts emit much lower amounts of CO2."
+  },
+  {
+    "objectID": "projects/beans.html#the-potential-of-pulses",
+    "href": "projects/beans.html#the-potential-of-pulses",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "The Potential of Pulses",
+    "text": "The Potential of Pulses\nAs the previous chart suggests, pulses could help fight food insecurity in vulnerable areas. For those unfamiliar, Pulses are a type of legume that is limited to crops harvested solely for dry grain, thereby excluding leguminous crops harvested green for food, crops used mainly for oil extraction, or crops that are used exclusively for sowing purposes.\nThe potential of pulses lie in their ability to be nutritious, inexpensive, and environmentally-friendly.\n\nThey are vital sources of protein and micronutrients like amino acids, iron and zinc, making them a great alternative for GHG emitters like meat and dairy. As protein and energy deficiencies are often the culprit for widespread malnutrition, this makes them an even more ideal solution.\nThey are significantly less expensive than animal proteins, making them more accessible to marginalized communities. They also have a long shelf life, meaning they produce very little food waste, if any, and can be stored for long periods of time without losing their nutrition.\nThe broad genetic diversity of these leguminous crops allow for the selection of climate-resilient varieties and their nitrogen fixing ability improves soil quality and produces a low carbon footprint"
+  },
+  {
+    "objectID": "projects/beans.html#the-reality-of-2020---2021-covid-19-pandemic-and-its-effect-on-the-food-supply",
+    "href": "projects/beans.html#the-reality-of-2020---2021-covid-19-pandemic-and-its-effect-on-the-food-supply",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "The Reality of 2020 - 2021: COVID-19 Pandemic and its Effect on the Food Supply",
+    "text": "The Reality of 2020 - 2021: COVID-19 Pandemic and its Effect on the Food Supply\nFast forward to 2021 and our world is dealing with a series of unprecedented events: a deadly pandemic and climate disasters that are becoming increasingly more extreme, just to name a few.\nThis does not help set the stage towards improving global food security. According to the World Bank:\n\n“even before COVID-19 reduced incomes and disrupted supply chains, chronic and acute hunger were on the rise due to various factors including conflict, socio-economic conditions, natural hazards, climate change and pests. COVID-19 impacts have led to severe and widespread increases in global food insecurity, affecting vulnerable households in almost every country, with impacts expected to continue through 2021, into 2022, and possibly beyond.”\n\n\nPulse Prices Surge\nOne of the most visible effects of the pandemic for many consumers have been the price surges of goods including pulses. This has been most visible in countries like India and Bangladesh where a majority of their populations rely on a pulses as plant-sourced protein. As these countries have historically struggled with producing enough supply to satisfy domestic demand, they often supplement this by importing large quantities of pulses. The pandemic’s effects like disrupted supply chains and increased demand for goods have only aggravated a huge weakness in global food production.\n\nIn April of 2021, India experienced sudden price increases of their top two most consumed pulses: chana (gram) and tur (pigeon peas) going from 100 Rp per kg to 130 Rp per kg causing the Indian government to remove quantitative restrictions on the import of pulses and signing contracts with various countries in order to import even more supply.\n\nIn Bangladesh’s largest market, prices of imported pulses from Australia and Canada surge Tk15 a kg in 2 weeks which many importers claimed was a result of the increase of booking price of all pulses in the international market\n\n\nFAO Food Price Indices\n\n\n\n\n\n\n\nSource: FAO\nPulses are not the only food group experiencing price surges. Like the World Bank’s report suggested, all food commodity prices surged over the course of the past year and a half. The Food and Agriculture Organization (FAO) body of the UN has been tracking such price changes with their food price and food commodity price indices. Food prices experienced minor fluctuations throughout 2018 and 2019 but for the most part stayed stable. The end of 2020 through 2021 is where the biggest changes in the FPI occur. We can see from the graph on the right that while all tracked commodities experienced increases in pricing, none experienced a more dramatic increase than vegetable oils and sugar."
+  },
+  {
+    "objectID": "projects/beans.html#masur-lentils-retail---bangladesh",
+    "href": "projects/beans.html#masur-lentils-retail---bangladesh",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Masur Lentils (Retail) - Bangladesh",
+    "text": "Masur Lentils (Retail) - Bangladesh\n\nForecast:\nIn the visualization below, I include both the full data + forecast (left) and a zoom into the forecast (right)\n\n\n\nCurrency: BDT (Bangladeshi Taka)\n\n\nMasur Lentils price data was observed in Southeast Asian states like Bangladesh, India & Pakistan. The above forecast is based on price data from 6 markets in Bangladesh from October 2005 to August 2018. The September 2018 to August 2021 forecast was created using 3 validation windows of 24 months each, separated by 24 months.\n\n\nActual:\n\nThis is what actually happened to masur lentil prices in Bangladesh from October 2018 to October 2021. As I expected to see in most of the graphs of actual prices, the 36 month time series shows prices on an upward slope, increasing especially around mid 2020 and continuing into and through 2021. The average price of masur lentils hits a peak right around April-May 2020 at 85 & 84 BDT respectively. (A level we do not see the price hit again until October 2021) This peak happens to occur around the same time that the FAO’s FFPI begins to show rapid increase in price changes of food. This is different from what was forecasted, where the peak begins mid 2019 and does not recover till mid 2020 where it proceeds to stay pretty level at around 65 BDT for the rest of he forecast."
+  },
+  {
+    "objectID": "projects/beans.html#niebe-beans-retail---burkina-faso",
+    "href": "projects/beans.html#niebe-beans-retail---burkina-faso",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Niebe Beans (Retail) - Burkina Faso",
+    "text": "Niebe Beans (Retail) - Burkina Faso\n\nForecast:\n\n\n\nCurrency: XOF (West African CFA Franc)\n\n\nNiebe Beans retail price data was observed in North African States like Burkina Faso, Central African Republic & Mali. The forecast above is based on prices from 20 different markets in Burkina Faso from September 2012 to August 2018. The September 2018 to August 2021 forecast was created using 3 validation windows of 12 months separated by 12 months.\n\n\nActual\n\nThis is what actually happened to the prices of niebe beans from September 2018 to September 2021. As noted in the actual price of masur lentils, niebe bean prices are also steadily rising through this period. In both the forecast and the actual prices we see a seasonal dip that occurs in late 2018, 2019 and 2020. Actual prices range from about 250 to 510 XOF. Forecasted prices ranged from about 275 to 480 XOF."
+  },
+  {
+    "objectID": "projects/beans.html#beans-retail---burundi",
+    "href": "projects/beans.html#beans-retail---burundi",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Beans (Retail) - Burundi",
+    "text": "Beans (Retail) - Burundi\n\nForecast:\n\n\n\nCurrency: BIF (Burundian Franc)\n\n\nBeans retail price data was observed in Central & South African States like Burundi, Democratic Republic of the Congo, Malawi, Uganda & Zimbabwe and in Northern African states like Libya. The above forecast is based on prices from 8 different markets in Burundi from January 2003 to September 2018. The October 2018 to September 2021 forecast was constructed using 4 validation windows of 24 months separated by 30 months.\n\n\nActual:\n\nAgain, we see an upwards trend in the actual retail prices of beans in Burundi. Both forecast and actual prices experiencing multiple dips the first being around mid 2019 and the last being in prices starting in early 2021 and begin to recover from it August/ September 2021. In fact, it seems like the forecast captured the same seasonality and cycles that occur in the actual price of beans just at a lower level. The forecast ranged between 1000 to 1300 BIF with the first dip hitting about 750 BIF and the last dip hitting an absolute low of about 670. The actual prices ranged from 1000 to 1650 BIF with the first dip hitting a low of about 850 BIF and the last dip hitting about 950 BIF."
+  },
+  {
+    "objectID": "projects/beans.html#imported-lentils-wholesale---colombia",
+    "href": "projects/beans.html#imported-lentils-wholesale---colombia",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Imported Lentils (Wholesale) - Colombia",
+    "text": "Imported Lentils (Wholesale) - Colombia\n\nForecast:\n\n\n\nCurrency: COP (Colombian Peso)\n\n\nThis is the price forecast of wholesale imported lentils given data from 5 markets in Colombia from February 2005 to August 2018. As many of the recent price surges in food products was occurring in the prices of imported food products, I thought this would be one of the most interesting forecasts to look at. The September 2018 to August 2021 forecast was constructed through the use of 5 validation windows, each 24 months long, separated by 6 months.\n\n\nActual\n\nActual prices experience a slight downwards trend, steadily decreasing from 3000 COP and hits a sudden dip mid-2019 at about 2000 COP. The rest of pictured period shows an upwards trend that peaks at 5250 COP. In the forecasted prices from the previous slide, forecasts differ greatly between markets. One (yellow) hits a peak of 6500 COP. The rest of the markets stay steady through the 36 month horizon ranging from about 2750 COP to 4250 COP."
+  },
+  {
+    "objectID": "projects/beans.html#black-beans-retail--haiti",
+    "href": "projects/beans.html#black-beans-retail--haiti",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Black Beans (Retail)- Haiti",
+    "text": "Black Beans (Retail)- Haiti\n\nForecast:\n\n\n\nCurrency: HTG (Haitian Gourde)\n\n\nThis forecast is based on prices from 9 markets in Haiti from September 2012 to August 2018. The September 2018 to August 2021 forecast was constructed through the use of 2 validation windows, each 30 months in length, separated by 6 months.\n\nMamit / Marmite: a bag\n\n\n\nActual\n\nActual Black bean prices in Haiti experienced an overall upwards trend starting around January - February 2019, hitting a peak of about 700 HTG in August 2020. The forecast hits a similar peak around late 2020 and early 2021 at 390 HTG. If one looks very closely in the period from May 2018 to January 2019, there is a slight downwards trend that is also captured in the forecast but is not illustrated to be as dramatic of a dip as in the forecast (about 250 HTG). Actual prices range from 300 to 700 HTG. Forecasted prices range from 250 HTG to 390 HTG."
+  },
+  {
+    "objectID": "projects/beans.html#lentils-retail---india",
+    "href": "projects/beans.html#lentils-retail---india",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Lentils (Retail) - India",
+    "text": "Lentils (Retail) - India\n\nForecast\n\n\n\nCurrency: INR (Indian Rupee)\n\n\nThe Lentils retail prices I observed were from India, Yemen and countries surrounding the Mediterranean like Egypt, Syria & Turkey. The forecast displayed above is that of time series data from 56 markets in India from April 2013 to August 2018. The September 2018 to August 2021 was constructed through the use of 3 validation windows, each 12 months long, separated by 6 months.\n\n\nActual\n\nActual prices of Indian lentils experienced an upwards trend in the pictured 36 months. There is a sudden change in level that occurs June 2019 that shifts the range from 60-70 INR to 85 - 110 INR. Forecasted prices also experienced a steady upwards trend that caused prices to range from 50-95 INR."
+  },
+  {
+    "objectID": "projects/beans.html#split-dry-peas-retail---lesotho",
+    "href": "projects/beans.html#split-dry-peas-retail---lesotho",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Split, Dry Peas (Retail) - Lesotho",
+    "text": "Split, Dry Peas (Retail) - Lesotho\n\nForecast\n\n\n\nCurrency: Lesotho Loti (LSL)\n\n\nThis forecast is based on the price data from 10 markets in Lesotho from August 2010 to August 2018. The September 2018 to August 2021 was constructed using 3 validation windows, each 24 months long, and separated by 9 months each.\n\n\nActual\n\nThe behavior of actual split, dry pea prices in Lesotho is very similar to what was forecasted except for one major exception: the dip/surge that occurs early/mid-2021. In the actual prices, we can see a cycle of a sudden peak that is first seen in January 2017 that reoccurs in May 2021 (about 25 LSL). In the forecasted prices, there is a dip (about 8.5 LSL)that occurs at almost the same time as the peak discussed. Forecasted prices stayed level through the 36 month horizon, keeping mostly to a range of 10 -15 LSL (besides the dip). Actual prices also kept to the same trend and level except for the sudden peak discussed earlier."
+  },
+  {
+    "objectID": "projects/beans.html#cowpeas-retail---mozambique",
+    "href": "projects/beans.html#cowpeas-retail---mozambique",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Cowpeas (Retail) - Mozambique",
+    "text": "Cowpeas (Retail) - Mozambique\n\nForecast\n\n\n\nCurrency: Metical (MZN)\n\n\nThis forecast is based on the prices of 25 markets in Mozambique from May 2011 to August 2018. Constructed using 3 validation windows, each 18 months long, separated by 9 months each.\n\n\nActual\n\nThe actual prices of cowpeas in Mozambique mostly trends upwards after a slight decline from September 2018 to November 2018. This changes sometime right before the start of 2021 where there is a slightly deeper dip than usual. Interestingly, a very similar thing happens around the same time in the forecast as well. The forecast also shows seasonal highs around the early parts of each year that coincide with the similar annual peaks that are seen in the actual prices above."
+  },
+  {
+    "objectID": "projects/beans.html#chickpeas-retail---tajikistan",
+    "href": "projects/beans.html#chickpeas-retail---tajikistan",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Chickpeas (Retail) - Tajikistan",
+    "text": "Chickpeas (Retail) - Tajikistan\n\nForecast:\n\n\n\nCurrency: TJS (Tajikistani Somoni)\n\n\nChickpea retail price data was observed in Libya, the State of Palestine, the Syrian Arab Republic, Tajikistan and Turkey. This forecast is based on prices from 5 markets in Tajikistan from May 2016 to August 2018. Constructed using 3 validation windows, each 8 months long, separated by 2 months.\n\n\nActual\n\nAs one can see, the actual prices of chickpeas in Tajikistan behaved very differently from what the forecast predicted. Actual prices experienced a downwards trend to about April 2020, hitting an absolute minimum of about 13.5 TJS. From May 2020 to the September 2021, prices experience an upwards trend, hitting a maximum of 17 TJS. The forecast seems to have depended on seasonality for prediction as most behavior that causes the different market time series to deviate from the same prices occurs at the beginning of each year. The one thing that the forecast and actual prices seem to agree on is how prices do not change too significantly from October 2018 to about February 2019."
+  },
+  {
+    "objectID": "projects/beans.html#white-beans-retail---turkey",
+    "href": "projects/beans.html#white-beans-retail---turkey",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "White Beans (Retail) - Turkey",
+    "text": "White Beans (Retail) - Turkey\n\nForecast\n\n\n\nCurrency: TRY (Turkish Lira)\n\n\nI observed white beans retail price data from the Republic of the Congo, Djibouti, Iraq, Syria, Turkey and Yemen. The above forecast is based on prices from 4 markets in Turkey from May 2013 to August 2018. Constructed using 3 validation windows, each 18 months long, separated by 4 months.\n\n\nActual\n\nThis is what actually happened to white bean prices in Turkey from September 2018 to September 2021. Prices trend upward through the entire period growing from around 9 TRY, peaking at around 17 TRY in September & November 2021. It almost looks like prices could have reached a slightly higher peak around July 2020 (the absolute peak in the forecast occurs right before the major dip) but the WFP does not have the data to confirm whether this happened. Like actual prices, the forecast experiences a major dip (about 7 TRY). The difference being actual prices dipped in October 2020 (to 2 TRY) while forecasted prices dramatically dipped around January and February 2020. Forecasted prices range between 7-9 TRY."
+  },
+  {
+    "objectID": "projects/beans.html#dry-beans-retail---zambia",
+    "href": "projects/beans.html#dry-beans-retail---zambia",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Dry Beans (Retail) - Zambia",
+    "text": "Dry Beans (Retail) - Zambia\n\nForecast:\n\n\n\nCurrency: Zambian Kwacha (ZMW)\n\n\nThe dry beans retail price data I observed was from African states like Gambia, Kenya & Zambia. The above forecast is based on prices from 69 markets in Zambia from January 2012 to August 2018. Constructed using 3 validation windows, each 19 months long, separated by 11 months each.\n\n\nActual\n\nThe actual prices of dry beans in Zambia stay pretty level (around 15-20 ZMW) but start to trend upward around early 2020, hitting a peak at 32 ZMW that plateaus through May 2021. The forecast differs slightly where most markets stayed level through the entire 36 month horizon, ranging between 5-25 ZMW. However, there is one market in our forecast that hits a peak of about 55 ZMW around the same time the actual prices hit their peak in mid-2021."
+  },
+  {
+    "objectID": "projects/beans.html#key-takeaways-1",
+    "href": "projects/beans.html#key-takeaways-1",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\nForecasts predicted overall lower pricing for Pulses, suggesting the Pandemic may have triggered a series of unobserved events resulting in actual prices rising more than expected\nCyclical behaviors occurring in both forecasts and actual pricing suggest that there are deeper long term issues that need to be addressed in order to maintain viability of pulses as a food source.\n\nWhile as we predicted, prices of pulses could have been consistently lower if the pandemic had not occurred, the forecasts picked up cyclical behaviors that (for the most part) also occurred in the plots of actual prices. A further study could be done in what was already occurring in pulse production that is causing the cyclical behavior as that could give a better indication of long term issues in pulse production that threaten its potential."
+  },
+  {
+    "objectID": "projects/beans.html#data-available-in-github-repo",
+    "href": "projects/beans.html#data-available-in-github-repo",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Data (Available in GitHub Repo):",
+    "text": "Data (Available in GitHub Repo):\nWFP - World Food Programme. (2021). Global Food Prices Database [CSV] Retrieved from https://data.humdata.org/dataset/wfp-food-prices\nWFP- World Food Programme. (2021) Global WFP commodities [CSV] Retrieved from https://data.humdata.org/dataset/global-wfp-food-prices\nWFP - World Food Programme. (2021). Global WFP markets [CSV] Retrieved from https://data.humdata.org/dataset/global-wfp-food-prices"
+  },
+  {
+    "objectID": "projects/beans.html#sources",
+    "href": "projects/beans.html#sources",
+    "title": "Forecasts of Post-COVID Pulse Prices in the Global South",
+    "section": "Sources:",
+    "text": "Sources:\n“About the International Year of Pulses.” About | 2016 International Year of Pulses, Food and Agriculture Organization of the UN, https://www.fao.org/pulses-2016/about/en/\n“Climate and Food Security Analyses: World Food Programme.” UN World Food Programme, https://www.wfp.org/climate-and-food-security-analyses\n“Economic: Prices - Dataviz: WFP - VAM.” WFP | Vam Food Security Analysis, World Food Programme, https://dataviz.vam.wfp.org/economic_explorer/prices\n“FAO Food Price Index.” FAO Food Price Index | World Food Situation | Food and Agriculture Organization of the United Nations, https://www.fao.org/worldfoodsituation/foodpricesindex/en/\nFaruque, Omar. “Prices of Pulses Surge up to TK15 a Kg in Two Weeks.” The Business Standard, The Business Standard, 10 Sept. 2021, https://www.tbsnews.net/markets/prices-pulses-surge-tk15-kg-two-weeks-300775\nMishra, Vivek, et al. “Pulse Puzzle 2021.” Down To Earth, DownToEarth, 2 Sept. 2021, https://www.downtoearth.org.in/news/food/pulse-puzzle-2021-78749\nPulses and Climate Change - Fao.org.” Food and Agriculture Organization of the United Nations, Food and Agriculture Organization of the United Nations, Feb. 2021, http://www.fao.org/3/i5426e/i5426e.pdf\n“Pulses for Food Security and Nutrition - Home | Food and …” Global Forum on Food Security and Nutrition, Food and Agriculture Organization of the UN, Dec. 2016, http://www.fao.org/3/i6690e/i6690e.pdf\nRedell, Nickalus. “Direct Forecasting with Multiple Time Series.” Cran.r-Project, 5 May 2020, https://cran.r-project.org/web/packages/forecastML/vignettes/grouped_forecast.html\nRitchie, Hannah. “You Want to Reduce the Carbon Footprint of Your Food? Focus on What You Eat, Not Whether Your Food Is Local.” Our World in Data, Global Change Data Lab, 24 Jan. 2020, https://ourworldindata.org/food-choice-vs-eating-local\nShankdhar, Shubham. “Why the Prices of Pulses Are Soaring.” India Today, Living Media India Limited, 6 July 2021, https://www.indiatoday.in/india-today-insight/story/why-the-prices-of-pulses-are-soaring-1824583-2021-07-06\nWorld Bank Group. “Food Security and Covid-19.” World Bank, World Bank Group, 21 Oct. 2021, https://www.worldbank.org/en/topic/agriculture/brief/food-security-and-covid-19"
+  },
+  {
+    "objectID": "projects/kpop.html#methods",
+    "href": "projects/kpop.html#methods",
+    "title": "Measuring Global Discovery Signals Associated with User Playlists",
+    "section": "Methods:",
+    "text": "Methods:\n\nData Visualization\nRegression Analysis\nFeature Engineering\nConfounder Adjusted Analysis"
+  },
+  {
+    "objectID": "projects/kpop.html#models",
+    "href": "projects/kpop.html#models",
+    "title": "Measuring Global Discovery Signals Associated with User Playlists",
+    "section": "Models:",
+    "text": "Models:\n\nLogistic Regression\nElastic Net\nCovariate-Adjusted Regression"
+  },
+  {
+    "objectID": "projects/kpop.html#tools-packages-used",
+    "href": "projects/kpop.html#tools-packages-used",
+    "title": "Measuring Global Discovery Signals Associated with User Playlists",
+    "section": "Tools/ Packages Used:",
+    "text": "Tools/ Packages Used:\n\nR\n\ncorrplot tidyverse ggplot2 car caret glmnet pROC vip recipes dotwhisker ggridges\n\nPython 3.13.3\n\nspotipy pandas numpy networkx\n\n\n  View Code on GitHub"
+  },
+  {
+    "objectID": "projects/kpop.html#how-much-exposure-exists-in-the-sample",
+    "href": "projects/kpop.html#how-much-exposure-exists-in-the-sample",
+    "title": "Measuring Global Discovery Signals Associated with User Playlists",
+    "section": "How much exposure exists in the sample?",
+    "text": "How much exposure exists in the sample?\n\n\n\n\n\n\n\nFrom the sample of 269 songs we are observing, playlist inclusion is relatively rare. Only 34 songs (~13%) were found on at least one user playlists on the observation date. This highlights that playlist exposure is not the norm for most tracks. Of the tracks included in playlists, inclusion is not uniform. While it is most common for that track to be included in only a single playlist, there are a number of exposed tracks that occur in multiple playlists, suggesting there may be certain qualities that influence exposure intensity."
+  },
+  {
+    "objectID": "projects/kpop.html#engagement-differences-at-a-glance",
+    "href": "projects/kpop.html#engagement-differences-at-a-glance",
+    "title": "Measuring Global Discovery Signals Associated with User Playlists",
+    "section": "Engagement Differences At A Glance",
+    "text": "Engagement Differences At A Glance\n\nTrack Popularity\nTrack popularity varies widely across the full sample, reflecting a mixture of niche and highly popular releases. Between the two groups (those with playlist exposure and those without playlist exposure), the tracks with playlist exposure have a higher mean.\n\n\n\n\n\n\n\nTracks included in user playlists show a much higher central tendency and reduced variance. While non-playlisted tracks span a broad range of scores, those included in playlists cluster towards the upper end of the distribution, indicating that playlist exposure is concentrated among high-engagement songs.\nAs track listening patterns and listening recency are both major factors in Spotify’s algorithm to calculate the popularity score, this factor will likely have one of the strongest effects on playlist exposure, a hypothesis later confirmed in the results. Given that track popularity is partially driven by artist-level engagement, another question to consider is whether playlist exposure reflects artist stature more broadly.\n\n\nWho Gets Added to The Playlist?\n\nBy Company\nThe very system that produces and manages k-pop idols has grown and become very complicated in recent years. The Hallyu Wave across the world has inspired a global fascination with Korean culture and thus great investment into its pop culture. With that great wealth resulting in both market consolidation and portfolio diversification, 4 major companies dominate the idol market: SM Entertainment, YG Entertainment, JYP Entertainment, and HYBE. These companies are informally known as “The Big 4”. For the purposes of this analysis, a Big 4 group is defined as a group claimed by one of the major players, regardless of subsidiary management.\n\n\n\nUser playlist inclusion is concentrated among tracks from Big 4 affiliated companies, but varies widely across independent/ other companies\n\n\n\n\n(Often these are subsidiaries that give up independent power in exchange for resources.) If the subsidiary label has independent decision-making power, the group is not considered part of the Big 4. In the sample, 59.5% of groups (16) are claimed by a Big 4 Company. Of those groups, 14.4% of their tracks are included in playlists. Of the groups not associated with a Big 4 or whose management operates independently of a Big 4, about 10.1% of their tracks end up user playlists. While the difference is small, it suggests that institutional visibility may provide a marginal advantage.\n\n\n\n\n\n\nBy Gender\n\n\n\n\nAs referenced earlier, gender is relatively balanced in this sample. Girl Groups make up 51.7% of the sample (boy groups 48.3%). Market-wise, boy groups usually have higher album sales and larger scale world tours while girl groups frequent Korean music charts and are more popular with the general Korean public. Music-wise, girl groups and boy groups release different styles of music in order to appeal to their target demographics. In spite of all this, with the ongoing evolution of society at large, girl groups have risen in their global appeal like Blackpink and New Jeans.\n\n\nThe increased appeal may be what is being observed in the plot above where 18.0% of sampled girl groups have a track featured on a playlist while only 6.9% of sampled boy groups have a track featured on a user playlist. This difference motivates the inclusion of gender as a structural control in later models.\n\n\n\nIs Exposure Just Age and Fame?\n\nBy Artist Popularity\nK-pop in comparison to other genres is pretty famous for very loyal fandoms (a good comparison would be Taylor Swift’s Swifties.) As such dedication is vital to revenue growth for management companies (loyal fans participate in intensive purchasing of albums, merch, and tickets along with paid access for ‘closeness’ to idols through exclusive content and events.) As a result, loyal fandoms can significantly influence listening behavior of tracks, regardless of their quality.\n\n\nThere is an expectation given that artist_popularity and popularity are so strongly correlated (track popularity is also used to help calculate artist popularity) that we will see similar behavior when comparing playlist exposure groups. To some extent, this is true. The average artist popularity for those included in a user playlist is about 80. The average artist popularity for those not included in a playlist is 70. This difference though is likely the result of a large proportion of playlisted tracks with artist popularity scores of about 85.\n\n\n\n\n\n\nBy Age\n\n\n\n\nWhen looking at how long the artist has been active (age_days) and playlist exposure, there is a possibility that we are also looking at the influence of artist popularity as well. As it often takes time for groups to build up their cult followings or to hit their success point, younger groups are often at a disadvantage when it comes to engagement. But older groups may also have difficulty as they do not release music as frequently and may be overlooked by fans in favor of more recent debuts.\n\n\nAs noted in the plot above, tracks included in playlists come from groups with a median age of 2554 days (~7 years). While those not included in a playlist have a median age of 1724 days (~4.7 years). Funnily enough, most groups sign an initial 7 year contract with their companies when debuting. It is a common point for groups to disband or to split up.\n\n\n\nMaybe it was Just the Track?\n\nBy Recency\nOne feature that may influence playlist exposure may be how recently a track was released. In K-Pop, the month or so following the release of a single or album is filled with promotions on social media, music shows, etc. All in the hopes of generating listens and increasing album sales. From the sample, average track age does not differ significantly by playlist exposure. However the more concentrated distribution among playlisted tracks suggests a mild preference for more recent increases.\n\n\n\nBy Duration\n\n\nThe average charting song on Spotify in 2024 was about 3 minutes, 15 seconds shorter than the average song in 2023. The shortening of charting songs in recent years is seen as the result of changes in songwriting, listening technology, and even genre. Hip-hop and pop tracks are shorter in nature than ballads. In our data, a majority of tracks range from 2.5 minutes (150,000 ms) to 3.33 minutes (250,000 ms). Even the most popular songs in our sample fall mostly into this range. Track length shows little difference between playlisted and non-playlisted tracks, suggesting that song length alone is not a meaningful driver of playlist inclusion within this genre.\n\n\n\n\n\n\n\n\n\n\nTip🎤 In Brief\n\n\n\n\nPlaylisted tracks are substantially more popular than non-playlisted tracks\nArtist Popularity mirrors this sentiment, likely due to overlap\nBig 4 affiliation and gender show modest but consistent differences\nTrack length and release recency appear weakly related to playlist exposure\n\nThese patterns prove that there is a need to disentangle whether playlist inclusion drives popularity or simply reflects pre-existing engagement."
+  },
+  {
+    "objectID": "projects/kpop.html#model-a-baseline-auc-0.6778",
+    "href": "projects/kpop.html#model-a-baseline-auc-0.6778",
+    "title": "Measuring Global Discovery Signals Associated with User Playlists",
+    "section": "Model A: Baseline (AUC= 0.6778)",
+    "text": "Model A: Baseline (AUC= 0.6778)\nAll relevant track and artist features were retained in the baseline logistic regression model to ensure interpretability and control for potential confounding, even if some predictors were not statistically significant individually. Sparse features like genre_k_rock are noted with caution.\n\n\n\nVariable\nLog-Odds Estimate\nOdds\n\n\n\n\nduration_ms\n-2.587e-06\n0.9999\n\n\npopularity *\n4.049e-01\n1.4991\n\n\nartist_followers\n8.544e-09\n1.0000\n\n\nartist_popularity*\n-1.571e-01\n0.8546\n\n\nbig4 (1)*\n-1.514\n0.2201\n\n\ngender(M)*\n-1.778\n0.1689\n\n\ndays_since_release\n-1.470e-04\n0.9999\n\n\nage_days *\n8.713e-04\n1.0009\n\n\ncollab (1)\n7.453e-01\n2.1070\n\n\ngenre_noise_music (1)\n-3.482e-02\n0.9658\n\n\ngenre_k_rock (1)\n-9.451\n7.8583e-05\n\n\n\nKey drivers of playlist inclusion appear to be track popularity, collaboration tracks, Big 4 company status, and group gender.\n\nTrack popularity has the strongest positive association with playlist inclusion\n\nFor a 1 unit increase in popularity, the odds of being included on a user curated playlist increases by ~50%\n\nTracks from girl groups and non- Big 4 companies have higher odds in appearing in user playlists\n\nWhile tracks associated with Big 4 Companies occur more frequently in user playlists overall, when controlling for all the benefits that Big 4 affiliation provides like artist reach, Big 4 affiliation itself is associated with lower odds of playlist inclusion. This suggests that user curated playlists may favor independent or discovery oriented tracks, once visibility is accounted for.\n\nCollaborations are associated with much larger odds of being included in a playlist\nTrack length, recency, and genre have only minimal effects after controlling for engagement and Artist features."
+  },
+  {
+    "objectID": "projects/kpop.html#model-b-standardized-logistic-regression",
+    "href": "projects/kpop.html#model-b-standardized-logistic-regression",
+    "title": "Measuring Global Discovery Signals Associated with User Playlists",
+    "section": "Model B: Standardized Logistic Regression",
+    "text": "Model B: Standardized Logistic Regression\n\n\n\n\nTo compare features on a common scale, continuous variables are transformed logarithmically and all numeric variables are standardized. The standardized coefficients are not useful for direct odds interpretation, but instead for relative importance comparison.\n\nThe variable importance plot, to the right, show that track popularity, group age, gender, Big 4 membership, and artist popularity contribute the strongest standardized effects.\nModel B’s results largely reinforce the conclusions from the initial model."
+  },
+  {
+    "objectID": "projects/kpop.html#model-c-elastic-net-model-auc0.7264",
+    "href": "projects/kpop.html#model-c-elastic-net-model-auc0.7264",
+    "title": "Measuring Global Discovery Signals Associated with User Playlists",
+    "section": "Model C: Elastic Net Model (AUC=0.7264)",
+    "text": "Model C: Elastic Net Model (AUC=0.7264)\n\n\nElastic Net regression confirms that popularity, artist_followers, big4 , gender , age_days , and collab are the most stable under regularization, while features like duration_msand sparse genre indicators are largely penalized out.\nNotably, artist_popularity, a feature considered significant in the previous 2 models is dropped. This suggests that artist_popularity ’s significance may be redundant compared to more granular engagement metrics like artist_followers, track popularity, or track features like collab .\n\n\n\n\nCoefficient Path for Elastic Net. At the optimal lambda (dotted line), there are 6 variables that have not shrunk to 0.\n\n\n\n\n\n\n\nVariable\nPenalized Coefficient\n\n\n\n\npopularity\n1.113506e-01\n\n\nartist_followers\n8.149439e-09\n\n\nbig4 (1)\n-4.013700e-01\n\n\ngender (M)\n-8.182169e-01\n\n\nage_days\n6.686525e-05\n\n\ncollab (1)\n3.864981e-01\n\n\n\n\n\n\n\n\n\nTip🎤 In Brief\n\n\n\nOverall, observable engagement metrics and structural attributes, rather than composite popularity scores, provide the most robust signal for playlist inclusion."
+  },
+  {
+    "objectID": "projects/kpop.html#regression-adjustment",
+    "href": "projects/kpop.html#regression-adjustment",
+    "title": "Measuring Global Discovery Signals Associated with User Playlists",
+    "section": "Regression Adjustment",
+    "text": "Regression Adjustment\nThis approach adjusts for confounding variables like group age, company affiliation, and track recency, allowing for a more meaningful comparison between playlisted and non-playlisted tracks. Artist popularity will be excluded from this model, as track popularity is often incorporated in its calculation.\nIncluding all these confounders increases the model’s explanatory power: the adjusted \\(R^2\\) grows from 0.1122 , in the unadjusted version, to 0.5084, in the fully adjusted version. This suggests that much of the variation in track popularity is explained by structural and content-related features, rather than playlist exposure alone. Even after adjustment, playlist exposure continues to be statistically significant in predicting track popularity, as is track length, artist followers, Big 4 affiliation, and gender.\n\n\n\nVariable\nCoefficient\n\n\n\n\nplaylist_exposure\n6.917\n\n\nduration_ms\n-1.308e-04\n\n\nartist_followers\n2.332e-07\n\n\nbig4\n1.049e+01\n\n\ngender\n-3.056\n\n\ndays_since_release\n1.456e-04\n\n\nage_days\n3.341e-05\n\n\ncollab\n1.241\n\n\ngenre_noise_music\n2.359e-01\n\n\ngenre_k_rock\n-4.549\n\n\n\n\n\n\n\n\nPlaylist exposure remains positively associated with track popularity after adjustment but is not the strongest effect.\n\n\n\nTo better compare all the features , I standardized all numeric variables and transformed all continuous variables. The standardized estimates (left) show that playlist exposure continues to be significant, along with duration_ms, artist_followers , big4 , days_since_release , age_days , and genre_noise_music .\nThe magnitudes of the coefficients show that playlist exposure explains incremental engagement differences, rather than dominating the popularity signal. Suggesting that playlist inclusion is only associated with track engagement and does not determine it.\n\n\n\n\n\n\n\n\nTip🎤 In Brief\n\n\n\nPlaylist inclusion and popularity reinforce one another and are likely to be influenced by unobserved promotional, social, and algorithmic mechanisms."
+  },
+  {
+    "objectID": "projects/kpop.html#key-takeaways-1",
+    "href": "projects/kpop.html#key-takeaways-1",
+    "title": "Measuring Global Discovery Signals Associated with User Playlists",
+    "section": "Key Takeaways:",
+    "text": "Key Takeaways:\n\nPlaylist inclusion is relatively rare (only 13% of the sample), but is concentrated among tracks with high popularity scores.\nTrack popularity is a strong predictor of inclusion, but does not fully explain engagement differences.\nEven after controlling for available track and artist features, playlisted tracks show higher engagement.\nBig 4 affiliation and gender show consistent associations even after adjustment, suggesting the influence of structural dynamics beyond content.\nPlaylist inclusion and popularity reinforce one another and are likely to be influenced by unobserved promotional, social, and algorithmic mechanisms.\nFindings provide a framework for operationalizing content discovery signals to inform platform strategy, recommendation optimization, and audience development decisions."
+  },
+  {
+    "objectID": "projects/kpop.html#limitations-future-directions",
+    "href": "projects/kpop.html#limitations-future-directions",
+    "title": "Measuring Global Discovery Signals Associated with User Playlists",
+    "section": "Limitations & Future Directions",
+    "text": "Limitations & Future Directions\nAlthough this analysis was able to examine the relationship between observable signals and playlist inclusion, some limitations need to be addressed. First, is the scale of the sample. The gathered data is from a singular day in 2025 and covers a limited set of groups. This restricted the ability to see how engagement may have changed from first release to after playlist inclusion and how it may have continued to change throughout the course of its existence. As a result, this analysis focused on patterns of exposure and engagement rather than causal inference.\nSecond, is how platform opacity restricts feature availability. One of the key discoveries from feature importance emphasized how composite popularity scores are a less robust signal than engagement metrics and structural attributes of tracks. Spotify does not release data about listening volume, a key factor only mentioned in the track popularity algorithm documentation. Spotify has also deprecated developer access to track features like valence (music positiveness) and danceability along with visibility into official Spotify playlists. Given the stylistic diversity of K-pop (bubble gum pop to reggaeton to disco), the inclusion of track features such as these could have enhanced vision into track characteristics as a result of structural dynamics. Future work could also compare the differences between professionally curated playlists and user curated playlists, in an effort to further individual discovery behavior from platform-driven exposure.\nOverall, this analysis provides a framework for examining how observable engagement and structural signals interact within platform algorithms. While exploratory, it sets a basis for future work ranging from longitudinal study to experiments that further disentangle causality between exposure and engagement. These signals could also be operationalized through monitoring and dashboards of the ongoing measurement of key discovery signals for stakeholder use in data-driven decision-making."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to My Portfolio",
+    "section": "",
+    "text": "Hi, My name is Christine! Welcome to my portfolio of data science & analytics odds and ends.\nCurrently enrolled part-time in Georgia Tech’s OMSA program, I have a strong background in analytics, machine learning, and data-driven decision-making. Experienced in developing data pipelines, statistical modeling, and deriving insights from large-scale data to drive business strategy. Passionate about translating complex data insights into actionable solutions.\n\n\nAll Data Science\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImproving Player Retention Through Experimental Design\n\n\n\ndata-science\n\n\n\nPython, Experimental Design, A/B Testing\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMeasuring Global Discovery Signals Associated with User Playlists\n\n\n\ndata-science\n\n\n\nPython, Regression, R\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nVestiaire Collective Listings Through Dashboards\n\n\n\ndata-science\n\n\n\nTableau, Dashboard\n\n\n\nJun 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nForecasts of Post-COVID Pulse Prices in the Global South\n\n\n\ndata-science\n\n\n\nR, Forecasting, Gradient Boosting\n\n\n\nJan 1, 2021\n\n\n\n\n\n\nNo matching items"
+  }
+]

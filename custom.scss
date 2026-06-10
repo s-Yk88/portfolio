@@ -1,0 +1,248 @@
+/*-- scss:rules --*/
+
+//------the navigation bar-------
+
+.navbar {
+  background-color: #F5F0E8;  // match or nudge Sandstone's bg
+  border-bottom: 0.5px solid rgba(0,0,0,0.08);
+}
+.navbar-brand {
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #5C3E34;
+}
+.navbar-brand:hover {
+  color: #9FD46C !important;
+}
+.nav-link  {
+  color: #6B6560 !important;
+}
+.nav-link:hover {
+  color: #9FD46C !important;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(107, 101, 96, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+
+//---------------icons------------------------
+
+.bi-linkedin{
+  color: #6B6560 !important;
+}
+.bi-linkedin:hover {
+  color: #9FD46C !important;
+}
+.bi-github{
+  color: #6B6560 !important;
+}
+.bi-github:hover {
+  color: #9FD46C !important;
+}
+.bi-google{
+  color: #6B6560 !important;
+}
+.bi-google:hover {
+  color: #9FD46C !important;
+}
+
+
+
+//------------gallery wall----------------
+
+//hide what the default grid looks like
+.quarto-listing {
+  display: none !important;
+}
+
+//-----the wall--------
+.gallery-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); //minmax allows it to figure out the amount of rows that fit automatically-- less work later
+  gap: 2.5rem;
+  padding: 2rem 0;
+  align-items: start;//don't need to stretch cards to match each other
+}
+
+//-----------filter button--------------
+.filter-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  font-size: 12px;
+  padding: 5px 16px;
+  border-radius: 2px;
+  border: 0.5px solid #C0A878;
+  background: transparent;
+  color: #7A6A58;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: #86B35D;
+  border-color: #86B35D;
+  color: #F5F0E8;
+}
+
+//--------piece and wire-------------
+.piece {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.piece:hover {
+  transform: translateY(-4px);
+}
+
+.wire {
+  width: 1px;
+  height: 14px;
+  background: rgba(100, 80, 50, 0.3);
+}
+
+//-----the frame-------
+.frame-outer {
+  width: 100%;
+  padding: 8px;
+  background: #6B4F2C;
+  box-shadow: 
+    0 4px 18px rgba(0,0,0,0.2),
+    0 1px 4px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.frame-outer.gilt {
+  background: linear-gradient(135deg, #8B6914, #C9A84C, #8B6914);
+}
+
+.frame-outer.dark-wood {
+  background: #6B4F2C;
+}
+
+.frame-outer.polaroid {
+  background: #FAF7F7;
+  padding-bottom: 28px; 
+}
+
+.piece:hover .frame-outer {
+  box-shadow: 
+    0 8px 28px rgba(0,0,0,0.25),
+    0 2px 8px rgba(0,0,0,0.15);
+}
+
+.frame-inner {
+  padding: 4px;
+  background: #F5F0E8;
+}
+
+.canvas {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+//-------------the placards------------------
+
+.placard {
+  margin-top: 0.75rem;
+  background: #F5F0E4;
+  border: 0.5px solid #C0A878;
+  padding: 6px 12px;
+  text-align: center;
+  width: fit-content;
+  min-width: 160px;
+  max-width: 100%;
+}
+
+.placard-num {
+  font-size: 10px;
+  color: #8B6914;
+  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.placard-title {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: #2C1F14;
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 3px 0;
+}
+
+.placard-meta {
+  font-size: 10px;
+  color: #8B6914;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.placard-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.tag {
+  font-size: 10px;
+  color: #7A6A58;
+  background: transparent;
+  border: 0.5px solid #C0A878;
+  border-radius: 2px;
+  padding: 2px 6px;
+  letter-spacing: 0.03em;
+}
+
+.piece-link {//no hyperlinked title
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+
+//--------------toggle list-------------------
+
+details {
+  border-bottom: 0.5px solid #e0d9ce;
+  padding: 0.75rem 0;
+}
+
+summary {
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6B6560;
+  cursor: pointer;
+  list-style: none;
+}
+
+details[open] summary {
+  color: #2C2C2A;
+}
+details[open] summary:hover {
+  color: #9FD46C !important;
+}
+
+
+//----------splitting into columns-------------
+//like double column writing
+
+.columns {
+  gap: 4rem;
+  display: flex !important;
+  align-items: center !important;
+}

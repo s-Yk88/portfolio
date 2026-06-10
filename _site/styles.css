@@ -1,0 +1,6 @@
+/* css styles */
+/*Quarto's default styles.css is just a plain CSS file,
+hereas if you're layering on top of a Bootstrap theme 
+like Sandstone you really want SCSS so you can use Quarto's 
+-- scss:rules -- and -- scss:defaults --- layering properly. 
+Plain CSS in styles.css can't hook into Bootstrap's variable system the way SCSS can.*/

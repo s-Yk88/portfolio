@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-12-01">
+<meta name="description" content="Python, Experimental Design, A/B Testing">
+
+<title>Improving Player Retention Through Experimental Design – Christine Papas</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9ac9e5047384fda4bfd1aed3a58c4b74.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="Improving Player Retention Through Experimental Design – Christine Papas">
+<meta property="og:description" content="Python, Experimental Design, A/B Testing">
+<meta property="og:image" content="../images/cookiecat/ck.png">
+<meta property="og:site_name" content="Christine Papas">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Christine Papas</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://www.linkedin.com/in/papaschristine8828/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://github.com/s-Yk88" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Improving Player Retention Through Experimental Design</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">data-science</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Python, Experimental Design, A/B Testing
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 1, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><img src="../images/cookiecat/cookiecat.png" class="img-fluid" style="width:100.0%"></p>
+<section id="summary" class="level1">
+<h1>Summary:</h1>
+<p>Designed and analyzed an A/B test (n=90,000+) to evaluate the impact of progression gating on player retention in a mobile game. Found that the majority of users churned before reaching either gate level, revealing that late-stage gating has limited leverage on overall retention. Among high-engagement players who reached the gates, minimal 7 day retention lift was observed between gate 30 versus 40. Recommended shifting experimentation to earlier-game friction points (levels 5 &amp; 10) to meaningfully impact retention and lifetime value.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>👾 Key Takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Because over 60% of players churned before reaching level 40, the effective sample size dropped to ~27K.</li>
+<li>This compromised the statistical sensitivity of the tests for Early Return Behavior and Gameplay Depth.</li>
+<li>Mid-term Retention, though adequately powered and showing that there was a statistically significant difference between the gate 30 and gate 40, only shows a minimal difference leading to questions of whether it is meaningful enough.</li>
+</ul>
+</div>
+</div>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods:</h2>
+<ul>
+<li>Retrospective Sensitivity Analysis/ Power Analysis</li>
+<li>A/B Testing of Binary &amp; Continuous Variables:
+<ul>
+<li>Hypothesis Testing
+<ul>
+<li><span class="math inline">\(X^2\)</span> test</li>
+<li>Mann-Whitney U Test</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="tools-packages-used" class="level2">
+<h2 class="anchored" data-anchor-id="tools-packages-used">Tools/ Packages Used:</h2>
+<ul>
+<li>Python 3.13.3
+<ul>
+<li><code>pandas</code> <code>numpy</code> <code>matplotlib.pyplot</code> <code>statsmodel.stats</code> <code>pingouin</code></li>
+</ul></li>
+</ul>
+<p><a href="https://github.com/s-Yk88/Game-Retention" target="_blank"> <i class="bi bi-github"></i> View Code on GitHub </a></p>
+</section>
+</section>
+<section id="background" class="level1">
+<h1>Background</h1>
+<p>One of the main goals of any game is to retain players. A common method of influencing player engagement and retention is the progression system. Progression systems, in general, help give players a sense of progression and completion of goals, which makes games more enjoyable. Within many games, a more specific progression feature known as a progression gate temporarily halts progress, encouraging players to take an action such as waiting, inviting friends, or making an in-app purchase. This, in turn, boosts the average lifetime value per player, a goal of any company building games. Here, we will see how changing when the progression gate occurs may impact retention metrics.</p>
+</section>
+<section id="data" class="level1">
+<h1>Data</h1>
+<p>This dataset includes A/B test results of Cookie Cats, a mobile puzzle game from <a href="https://tactilegames.com/games/cookie-cats/">Tactile Entertainment</a> , to examine what happens when the first gate in the game was moved from level 30 to level 40.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>userid</code></strong></td>
+<td>unique identifiers for each player</td>
+</tr>
+<tr class="even">
+<td><strong><code>version</code></strong></td>
+<td>Whether the player was put in the control group (gate_30 - a gate at level 30) or the group with the moved gate (gate_40 - a gate at level 40).</td>
+</tr>
+<tr class="odd">
+<td><strong><code>sum_gamerounds</code></strong></td>
+<td>the total number of game rounds played by each user during the testing period.</td>
+</tr>
+<tr class="even">
+<td><strong><code>retention_1</code></strong></td>
+<td>Did the player return to the game after 1 day? (Categorical [0,1])</td>
+</tr>
+<tr class="odd">
+<td><strong><code>retention_7</code></strong></td>
+<td>Did the player return to the game after 7 days? (Categorical [0,1])</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="experiment-design" class="level1">
+<h1>Experiment Design</h1>
+<p>::: {callout-tip icon=“false”}</p>
+<section id="in-brief" class="level2">
+<h2 class="anchored" data-anchor-id="in-brief">👾 In Brief</h2>
+<ul>
+<li>n= 90,189 players</li>
+<li>Target Variables: <code>sum_gamerounds</code> <code>retention_1</code> <code>retention_7</code></li>
+<li>Control Group: <code>gate_30</code> response group of <code>version</code> variable</li>
+<li>Test Group: <code>gate_40</code> response group of <code>version</code> variable</li>
+<li>Players were randomly assigned at Install :::</li>
+</ul>
+</section>
+<section id="primary-question" class="level2">
+<h2 class="anchored" data-anchor-id="primary-question">Primary Question</h2>
+<blockquote class="blockquote">
+<p><span style="color: #86B35D;"><em>Can shifting a progression gate from level 30 to level 40 meaningfully improve player retention and engagement?</em></span></p>
+</blockquote>
+<p>To evaluate the impact of shifting the progression gate, I analyzed:</p>
+<ul>
+<li>1 Day Retention</li>
+<li>7 Day Retention</li>
+<li>Total Game Rounds Played</li>
+</ul>
+<p>Each metric captures a different stage of engagement: early return behavior, mid-term retention, and depth of game play.</p>
+</section>
+<section id="balance-check" class="level2">
+<h2 class="anchored" data-anchor-id="balance-check">Balance Check</h2>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:50%;">
+<p><img src="../images/cookiecat/balance.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p>Before running any sort of experiment comparing the effects of different progression gates on retention, we need to check that there is balanced randomized assignment. Ultimately, we find that both groups have been assigned almost the same number of players each. The <code>gate_30</code> group has <span style="color: #86B35D;"><strong>44700</strong></span> players and the <code>gate_40</code> group has <span style="color: #86B35D;"><strong>45489</strong></span> players.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="critical-observation-early-player-churn" class="level1">
+<h1>Critical Observation: Early Player Churn</h1>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Gate 30</th>
+<th>Gate 40</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Count</td>
+<td>44700</td>
+<td>45489</td>
+</tr>
+<tr class="even">
+<td>Mean</td>
+<td>52.456</td>
+<td>51.299</td>
+</tr>
+<tr class="odd">
+<td>Std</td>
+<td>256.716</td>
+<td>103.294</td>
+</tr>
+<tr class="even">
+<td>Min</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>25%</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Median</td>
+<td>17</td>
+<td>16</td>
+</tr>
+<tr class="odd">
+<td>75%</td>
+<td>50</td>
+<td>52</td>
+</tr>
+<tr class="even">
+<td>Max</td>
+<td>49854</td>
+<td>2640</td>
+</tr>
+</tbody>
+</table>
+<p>While the dataset we are using has been been cleaned (of NAs) prior to our use, we can check the summary statistics of the numeric variables to make sure that the data we are using can actually answer our question. While the mean number of rounds played by each version group are about <span style="color: #86B35D;"><strong>52</strong></span> and <span style="color: #86B35D;"><strong>51</strong></span> respectively, the medians tell a very different story.</p>
+<p>The median of the players in the <code>gate_30</code> version only reached up to round <span style="color: #86B35D;"><strong>17</strong></span> and median of the <code>gate_40</code> version players only reached up to round <span style="color: #86B35D;"><strong>16</strong></span>. As the mean can be easily influenced by extreme outliers (shown by the max game rounds played), the average player seems to have never gotten close to the level 30 or 40.</p>
+<blockquote class="blockquote">
+<p><span style="color: #86B35D;"><em>So, what happens when we limit the sample groups to that of players that actually reach both tested progression gate levels (x≥ 40)?</em></span></p>
+</blockquote>
+<p>Both sample groups shrink to that of about 30% of the original version sample groups, for a total sample size of [<strong>27,393</strong>] players. As we do not know the actual number of players that play Cookie Cats, this sample could be too small to be able to extrapolate our results to the total player population. On the other hand, the sample sizes are still relatively large (<span style="color: #86B35D;"><strong>&gt;10,000</strong></span>), decreasing the likelihood of type I &amp; II error.</p>
+<p>For the sake of this analysis, we will use this limited sample to test our hypotheses.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Gate 30</th>
+<th>Gate 40</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Count</td>
+<td>13566</td>
+<td>13827</td>
+</tr>
+<tr class="even">
+<td>Mean</td>
+<td>145.713</td>
+<td>142.668</td>
+</tr>
+<tr class="odd">
+<td>Std</td>
+<td>452.119</td>
+<td>151.198</td>
+</tr>
+<tr class="even">
+<td>Min</td>
+<td>40</td>
+<td>40</td>
+</tr>
+<tr class="odd">
+<td>25%</td>
+<td>57</td>
+<td>58</td>
+</tr>
+<tr class="even">
+<td>Median</td>
+<td>90</td>
+<td>92</td>
+</tr>
+<tr class="odd">
+<td>75%</td>
+<td>167</td>
+<td>165</td>
+</tr>
+<tr class="even">
+<td>Max</td>
+<td>49854</td>
+<td>2640</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="restrospective-sensitivity-analysis" class="level1">
+<h1>Restrospective Sensitivity Analysis</h1>
+<p>After having observed that <span style="color: #86B35D;"><strong>60%</strong></span> of our sample churns far earlier than level 40, a good question to consider is:</p>
+<blockquote class="blockquote">
+<p><span style="color: #86B35D;"><em>Given the effective sample size (~27,000), what magnitude of effect can we expect to detect?</em></span></p>
+</blockquote>
+<p>This is because the larger a sample size is, the larger the statistical power and the likelihood of detecting a truly significant effect as the larger size makes it easier to detect effect. The early churn of players may invalidate some of our results.</p>
+<p>For the categorical variables, we will use Cohen’s h to attain the effect size measure and determine the required sample size for a chi-square test to be adequately powered. For the continuous variable, due to the skew in the data, we will use the rank biserial r as the measurable effect and determine the required sample size for an adequately powered Mann-Whitney U Test.</p>
+<section id="day-retention" class="level2">
+<h2 class="anchored" data-anchor-id="day-retention">1 Day Retention</h2>
+<p>Both gate versions happened to retain a little under half of their player samples after one day. The <code>gate_30</code> group retains roughly <span style="color: #86B35D;"><strong>83.8%</strong></span> of its players and the <code>gate_40</code> group retains about <span style="color: #86B35D;"><strong>83.0%</strong></span> of its players after 1 day. Below, we tracked the effect size given a variety of percentage point differences, the required sample size to achieve 80% power, and the actual power when n is 13,566.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Percentage Point Difference</th>
+<th>Effect (Cohen’s h)</th>
+<th>Required <em>n</em> per group (to achieve 80%)</th>
+<th>Achieved Power when n= 13,566</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.5</td>
+<td>0.013</td>
+<td>~89626</td>
+<td>0.19</td>
+</tr>
+<tr class="even">
+<td><span style="color: #86B35D;">0.8 (actual)</span></td>
+<td><span style="color: #86B35D;">0.022</span></td>
+<td><span style="color: #86B35D;">~33953</span></td>
+<td><span style="color: #86B35D;">0.43</span></td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0.027</td>
+<td>~21623</td>
+<td>0.61</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>0.055</td>
+<td>~5270</td>
+<td>0.994</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0.083</td>
+<td>~2280</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>For the actual difference between the retention rates, the achieved power is <span style="color: #86B35D;"><strong>43%</strong></span>, meaning that the reduced samples will not detect an effect of size 0.8. At n=13,566, we need a <span style="color: #86B35D;"><strong>~1.5%</strong></span> point difference to achieve 80% power.</p>
+</section>
+<section id="day-retention-1" class="level2">
+<h2 class="anchored" data-anchor-id="day-retention-1">7 Day Retention</h2>
+<p>After 7 days, there is drastic drop off in players in both versions. Like earlier, both versions seem to retain a similar amount of players. The <code>gate_40</code> group retains about <span style="color: #86B35D;"><strong>50.3%</strong></span> after 7 days, while the <code>gate_30</code> group retains about <span style="color: #86B35D;"><strong>48.5%</strong></span> of its players.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Percentage Point Difference</th>
+<th>Effect (Cohen’s h)</th>
+<th>Required <em>n</em> per group (to achieve 80%)</th>
+<th>Achieved Power when n= 13,566</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.5</td>
+<td>0.010</td>
+<td>~156,784</td>
+<td>0.131</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.020</td>
+<td>~39,227</td>
+<td>0.380</td>
+</tr>
+<tr class="odd">
+<td><span style="color: #86B35D;">1.8 (actual)</span></td>
+<td><span style="color: #86B35D;">0.036</span></td>
+<td><span style="color: #86B35D;">~12,109</span></td>
+<td><span style="color: #86B35D;">0.846</span></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.060</td>
+<td>~4359</td>
+<td>0.999</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>0.100</td>
+<td>~1568</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>For the actual percentage point difference between the gating groups, we find that the achieved power is <span style="color: #86B35D;"><strong>84.6%</strong></span>, meaning that the reduced samples will detect an effect of this size.</p>
+</section>
+<section id="total-games-played" class="level2">
+<h2 class="anchored" data-anchor-id="total-games-played">Total Games Played</h2>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:50%;">
+<p>To the right, we are checking the distribution of game rounds played by the players during the course of the first 7 days. We expect to see this skew right, indicating that most players only play a few rounds and only a few players play a large number of rounds. As we can see, the distribution shows just as we expected with a majority of players playing below 300 games and only a few making it to the 1000 round mark.</p>
+</div><div class="column" style="width:50%;">
+<p><img src="../images/cookiecat/roundplay.png" class="img-fluid"></p>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Effect (Rank Biserial R-RBC)</th>
+<th>Cohen’s d</th>
+<th>Required <em>n</em> per group (to achieve 80%)</th>
+<th>Achieved Power when n= 13,566</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.005</td>
+<td>0.010</td>
+<td>~156,974</td>
+<td>0.131</td>
+</tr>
+<tr class="even">
+<td><span style="color: #86B35D;">0.013 (actual)</span></td>
+<td><span style="color: #86B35D;">0.026</span></td>
+<td><span style="color: #86B35D;">~22610</span></td>
+<td><span style="color: #86B35D;">0.587</span></td>
+</tr>
+<tr class="odd">
+<td>0.02</td>
+<td>0.040</td>
+<td>~9808</td>
+<td>0.911</td>
+</tr>
+<tr class="even">
+<td>0.03</td>
+<td>0.060</td>
+<td>~4358</td>
+<td>0.999</td>
+</tr>
+<tr class="odd">
+<td>0.05</td>
+<td>0.100</td>
+<td>~1567</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The RBC of <span style="color: #86B35D;"><strong>0.013</strong></span> indicates that <code>gate_30</code> players only marginally outrank <code>gate_40</code> players in total games played. More specifically, <code>gate_30</code> players outrank <code>gate_40</code> in approximately <span style="color: #86B35D;"><strong>50.7%</strong></span> of random pairings versus <span style="color: #86B35D;"><strong>49.35%</strong></span>. For this small effect, we find that the achieved power is <span style="color: #86B35D;"><strong>58.7%</strong></span>, meaning that the reduced samples will not detect an effect of this size.</p>
+<p>This analysis reveals that early churn didn’t just reduce experiment relevance, it compromised the statistical sensitivity of two out of the three metrics. Only the 7-Day Retention is adequately powered enough to detect the observed effect.</p>
+<p>As the lack of power in early return behavior (<code>1-Day Retention</code>) and gameplay depth (<code>Total Game Rounds Played</code>) measures leads us to a pretty high risk of type 2 error, I would want to rerun the experiment to have a sufficient number of respondents that reach the required levels to be affected by the progression gates. But for the purpose of practice, we will continue with these samples.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Power Analysis Result">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Power Analysis Result
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>Because over 60% of players churned before reaching level 40, the effective sample size dropped to ~27K.</em></p>
+<ul>
+<li>Early Return Behavior and Gameplay Depth are underpowered in detecting the current size of effect</li>
+<li>Mid-Term Retention is adequately powered to detect the observed size of effect.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="analysis" class="level1">
+<h1>Analysis</h1>
+<section id="chi-square-x2-test-of-independence" class="level2">
+<h2 class="anchored" data-anchor-id="chi-square-x2-test-of-independence">Chi Square (<span class="math inline">\(X^2\)</span>) Test of Independence:</h2>
+<p>To test the 1 day and 7 day retention metrics, I will use <span class="math inline">\(X^2\)</span> tests as we are comparing 2 unpaired sample groups. <span class="math inline">\(X^2\)</span> tests are generally used to examine whether 2 categorical variables are independent in influencing the test statistic.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>P-Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 Day Retention</td>
+<td>0.10231</td>
+</tr>
+<tr class="even">
+<td>7 Day Retention</td>
+<td>0.00333</td>
+</tr>
+</tbody>
+</table>
+<p>Using <span class="math inline">\(\alpha\)</span>=0.05 as our significance level, we fail to reject the null hypothesis for the <code>retention_1</code> variable and conclude there is no statistically significant difference in the 1 day retention metric between the different gate groups. However, as evidenced by retrospective sensitivity analysis, this test was inadequately powered (<span style="color: #86B35D;"><strong>43%</strong></span>), thus this result should be considered with caution.</p>
+<p>In comparison, we can reject the hypothesis for the <code>retention_7</code> variable, concluding there is a statistically significant difference in the 7 day retention metric between the different level gate groups. The earlier sensitivity analysis concluded that this test is adequately powered (<span style="color: #86B35D;"><strong>84.6%</strong></span>) to detect the observed effect (h=0.036) between the two groups, further validating the result.</p>
+<p>While the result of the 7 Day Retention test is promising, we do have to consider whether instituting a change for such a small effect is worth it. With a rough estimate of 2 million installs, this difference represents about <span style="color: #86B35D;"><strong>36,000</strong></span> additional players being retained after a week.</p>
+</section>
+<section id="mann-whitney-u-test" class="level2">
+<h2 class="anchored" data-anchor-id="mann-whitney-u-test">Mann-Whitney U Test</h2>
+<p>To test our continuous <code>sum_gamerounds</code> variable, I will use a Mann Whitney U Test. While we could have tried to use a t-test, our <code>sum_gamerounds</code> variable violates one very important assumption of the t-test: the data is not normally distributed (as seen in the retrospective power analysis). When we run the test, we find that:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>U-Statistic</th>
+<th>92552991.50</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>p-value</td>
+<td>0.05900</td>
+</tr>
+</tbody>
+</table>
+<p>As our <span class="math inline">\(\alpha\)</span>=0.05 and the p-value is <span style="color: #86B35D;"><strong>0.06</strong></span>, convention would suggest that we fail to reject the hypothesis and conclude there is no statistically significant difference between the median number of rounds played in each group.</p>
+<p>However, the retrospective sensitivity analysis from earlier revealed that this test is only <span style="color: #86B35D;"><strong>59%</strong></span> powered to detect the observed effect (<span style="color: #86B35D;"><strong>RBC=0.013</strong></span>), falling short of the conventional 80% power threshold. The required sample of <span style="color: #86B35D;"><strong>~22,600</strong></span> per group exceeds what was available from the effective sample. As a result of this, the borderline p-value of <span style="color: #86B35D;"><strong>0.06</strong></span> should be interpreted carefully.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Experiment Results">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Experiment Results
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>retention_1</code> : Fail to reject the null hypothesis and must conclude there is no statistically significant difference in the 1 day retention metric between the 2 versions. Early player churn compromises the test’s statistical sensitivity, so this result should be considered with caution.</p>
+<p><code>retention_7</code> : Can reject null hypothesis and conclude there is a statistically significant difference in the 7 day retention metric between the 2 different versions. While the test is adequately powered, the small observed difference between groups may not be enough to warrant actual changes.</p>
+<p><code>sum_gamerounds</code>: Fail to reject the null hypothesis and conclude there is no statistically significant difference between the median number of rounds played in each group. However, as early player churn compromises the test’s statistical power, this result will be considered with caution.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>From the experiments, we found that a statistically significant difference was observed in 7-day retention. Despite that, the effect size is modest and not supported by differences in early retention or total gameplay volume, leading to questions of whether the tested change would actually be meaningful. Monetization data may be able to provide further context for whether the results are meaningful enough.</p>
+<p>Instead, the main finding of early player churn (before either progression gate), indicates that late-stage gating is unlikely to influence overall retention metrics at scale. This suggests retention improvements will likely come from optimizing early-game friction and onboarding mechanics rather than adjusting mid-game progression thresholds.</p>
+<section id="recommendations" class="level2">
+<h2 class="anchored" data-anchor-id="recommendations">Recommendations</h2>
+<p>In light of these results, my main concern is what is happening during the earlier rounds of the game that is causing a majority of players to churn. Thus, this experiment should be ran again with progression gates at levels 5 and 10. Assuming that retention effects will be larger earlier in the game, the same sample sizes will give higher power.</p>
+</section>
+</section>
+<section id="sources" class="level1">
+<h1>Sources</h1>
+<p><a href="https://medium.com/womenintechnology/log-transformation-to-mitigate-the-effect-of-outliers-413cdd275495">https://medium.com/womenintechnology/log-transformation-to-mitigate-the-effect-of-outliers-413cdd275495</a></p>
+<p><a href="https://medium.com/data-science/step-by-step-for-planning-an-a-b-test-ef3c93143c0b">https://medium.com/data-science/step-by-step-for-planning-an-a-b-test-ef3c93143c0b</a></p>
+<p><a href="https://www.statsols.com/articles/types-of-statistical-tests">https://www.statsols.com/articles/types-of-statistical-tests</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Chi-squared_test">https://en.wikipedia.org/wiki/Chi-squared_test</a></p>
+<p><a href="https://www.reddit.com/r/gamedesign/comments/1eh2n7f/introductory_guide_to_game_progression_and/">https://www.reddit.com/r/gamedesign/comments/1eh2n7f/introductory_guide_to_game_progression_and/</a></p>
+<p><a href="https://play.google.com/store/apps/details?id=dk.tactile.cookiecats&amp;hl=en_US">https://play.google.com/store/apps/details?id=dk.tactile.cookiecats&amp;hl=en_US</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

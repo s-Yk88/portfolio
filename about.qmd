@@ -1,0 +1,54 @@
+---
+title: "Resume"
+about:
+  template: marquee
+---
+
+
+|||
+|-----|------|
+|**Programming Languages**|Python (`Pandas`, `NumPy`, `Scikit-Learn`, `SciPy`, `Seaborn`, `Matplotlib`, `Prophet`), SQL, R (`ggplot2`, `tidyverse`), SAS|
+|**Analytics/ Machine Learning**|Linear & Logistic Regression, Random Forest, Decision Tree, Time Series Forecasting, Gradient Boosting, Media Mix Modeling, Data Fusion, Classification, Clustering, Data Mining, Random Forest, Experimental Design|
+|**Platforms/ Tools**|Snowflake, AWS, BigQuery, GCP, Tableau, Google Analytics, Jupyter Notebooks, GitHub,  Microsoft Office|
+|**Languages**|English, Japanese|
+
+
+
+
+## Experience:
+
+**Junior Data Scientist** | Paramount Global - New York, NY (Mar 2022 - Aug 2024)
+
+> Tools: Python, SQL, R, Snowflake, AWS, Tableau
+
+* Developed and maintained media mix models to analyze cross-platform audience dynamics, quantifying how content exposure and distribution drove consumer behavior shifts, findings adopted by strategy and marketing teams to inform content planning and investment decisions.
+* Designed and implemented data pipelines integrating consumer survey and behavioral data to deliver ongoing insights into audience perceptions of brands and content, constantly redefining and updating success metrics in partnership with stakeholders to reflect evolving product and marketing priorities.
+* Conducted statistical modeling on large-scale behavioral and survey data to quantify how content distribution drove audience engagement, findings used to inform strategic distribution and content planning across streaming and linear platforms.
+* Partnered with product, marketing, and strategy teams to define and track success metrics for new media initiatives, distilling complex analyses into clear, actionable recommendations and aligning stakeholders across diverse team structures.
+* Authored comprehensive technical documentation for modeling pipelines and analytical frameworks enabling reproducibility and knowledge transfer, reducing onboarding time and ensuring continuity across projects.
+
+
+
+
+## Education
+
+**Georgia Institute of Technology** | M.S., Analytics                             (Expected 2027)
+
+> Relevant Classes: Computing for Data Analytics, Intro to Analytics Modeling, Data Analytics for Business, Statistical Modeling & Regression Analysis, Computational Data Analysis (Machine Learning)
+
+
+**The College of New Jersey** | B.S. Mathematics (Statistics Specialization)      (2019)
+
+> Relevant Classes: Calculus (A,B,C), Linear Algebra, Design of Experiments, Sampling & Non-Parametric Statistics, Probability, Applied Multivariate Analysis, Regression, Statistical Quality Control, Computational & Bayesian Statistics, Mathematical Statistics
+
+
+
+## Certifications:
+
+**Python 3 Programming Specialization**| University of Michigan                                         (2023)
+
+**SQL for Data Science with Google BigQuery** | Udemy                                                   (2021)
+
+**Google Analytics for Beginners** | Google Analytics Academy                                           (2020)
+
+**Fundamentals of Visualization with Tableau** | UC Davis                                               (2020)

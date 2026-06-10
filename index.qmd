@@ -1,0 +1,23 @@
+---
+title: "Welcome to My Portfolio"
+listing:
+    contents: projects
+    type: grid
+    fields: [title, date, categories, description, image]
+    sort: "date desc"
+---
+
+Hi, My name is Christine! Welcome to my portfolio of data science & analytics odds and ends.
+
+Currently enrolled part-time in Georgia Tech’s OMSA program, I have a strong background in analytics, machine learning, and data-driven decision-making. Experienced in developing data pipelines, statistical modeling, and deriving insights from large-scale data to drive business strategy. Passionate about translating complex data insights into actionable solutions.
+
+<!--filter buttons-->
+<div class="filter-row">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="data-science">Data Science</button>
+</div>
+
+<div class="gallery-wall" id="gallery-wall"></div>
+
+<script src="gallery.js"></script>
+

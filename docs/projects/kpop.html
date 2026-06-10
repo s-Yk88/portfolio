@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-10-01">
+<meta name="description" content="Python, Regression, R">
+
+<title>Measuring Global Discovery Signals Associated with User Playlists – Christine Papas</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9ac9e5047384fda4bfd1aed3a58c4b74.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="Measuring Global Discovery Signals Associated with User Playlists – Christine Papas">
+<meta property="og:description" content="Python, Regression, R">
+<meta property="og:image" content="../images/kpop/redvelvet.jpg">
+<meta property="og:site_name" content="Christine Papas">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Christine Papas</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://www.linkedin.com/in/papaschristine8828/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://github.com/s-Yk88" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Measuring Global Discovery Signals Associated with User Playlists</h1>
+<p class="subtitle lead">A K-Pop Case Study</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">data-science</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Python, Regression, R
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 1, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><img src="../images/kpop/redvelvet.jpg" class="img-fluid"></p>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>This analysis explores how user-curated playlists surface K-pop tracks and whether there are observable differences in engagement signals that explain exposure. Using Spotify API data for the top tracks of 27 K-pop groups, I engineered artist and track level features including popularity, label affiliation, group composition, and audio attributes. Then, combined exploratory analysis, interpretable modeling, and robustness checks to identify which signals consistently differentiate exposed tracks. The results illustrate how observable engagement and structural signals may be used to better understand content exposure in algorithmically entwined discovery systems.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎤 Key Takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Playlist inclusion is relatively rare (only 13% of the sample), but is concentrated among tracks with high popularity scores.</li>
+<li>Track popularity is a strong predictor of inclusion, but does not fully explain engagement differences.</li>
+<li>Even after controlling for artist and track features, playlisted tracks show higher engagement.</li>
+<li>Big 4 affiliation and gender show consistent associations even after adjustment, suggesting there is also a structural dynamic involved.</li>
+<li>Playlist inclusion and popularity reinforce one another and are likely influenced by unobserved promotional, social, and algorithmic mechanisms.</li>
+<li>Findings provide a framework for operationalizing content discovery signals to inform platform strategy, recommendation optimization, and audience development decisions.</li>
+</ul>
+</div>
+</div>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods:</h2>
+<ul>
+<li>Data Visualization</li>
+<li>Regression Analysis</li>
+<li>Feature Engineering</li>
+<li>Confounder Adjusted Analysis</li>
+</ul>
+</section>
+<section id="models" class="level2">
+<h2 class="anchored" data-anchor-id="models">Models:</h2>
+<ul>
+<li>Logistic Regression</li>
+<li>Elastic Net</li>
+<li>Covariate-Adjusted Regression</li>
+</ul>
+</section>
+<section id="tools-packages-used" class="level2">
+<h2 class="anchored" data-anchor-id="tools-packages-used">Tools/ Packages Used:</h2>
+<ul>
+<li>R
+<ul>
+<li><code>corrplot</code> <code>tidyverse</code> <code>ggplot2</code> <code>car</code> <code>caret</code> <code>glmnet</code> <code>pROC</code> <code>vip</code> <code>recipes</code> <code>dotwhisker</code> <code>ggridges</code></li>
+</ul></li>
+<li>Python 3.13.3
+<ul>
+<li><code>spotipy</code> <code>pandas</code> <code>numpy</code> <code>networkx</code></li>
+</ul></li>
+</ul>
+<p><a href="https://github.com/s-Yk88/kpop_engage" target="_blank"> <i class="bi bi-github"></i> View Code on GitHub </a></p>
+</section>
+</section>
+<section id="background" class="level1">
+<h1>Background:</h1>
+<p>Korean pop music (K-Pop) exploded in popularity across the globe over the past decade, driven primarily by accessibility via globalization. Specifically, accessibility in terms of audio and visual content across social media and entertainment streaming. Korean dramas have proliferated via localization efforts by <em>Netflix</em>, while <em>Spotify’s</em> global growth strategy has required expansion of their music catalog.</p>
+<p>The same can be said of the Korean music industry. The management companies responsible for pumping out new groups and idols like <em>HYBE</em> (the home of BTS) have expanded their reach with major international partnerships but have also diversified their portfolio domestically to sustain demand. This shift in structure raises questions about how music content gains visibility in global markets as corporate strategy and partnerships evolve.</p>
+<p>Historically, there has been a huge difference between what artists and tracks are popular domestically versus abroad. This difference suggests that global discovery is not only influenced by audience preferences but also by engagement signals, structural advantages, and platform visibility.</p>
+<section id="in-this-analysis-i-focus-on" class="level3">
+<h3 class="anchored" data-anchor-id="in-this-analysis-i-focus-on">In this analysis, I focus on:</h3>
+<blockquote class="blockquote">
+<p><span style="color: #86B35D;"><em>What types of songs appear in user-curated playlists and are measurable signals useful in determining playlist inclusion?</em></span></p>
+</blockquote>
+</section>
+<section id="why-do-discovery-signals-matter" class="level3">
+<h3 class="anchored" data-anchor-id="why-do-discovery-signals-matter">Why Do Discovery Signals Matter?</h3>
+<p>As algorithms increasingly decide how audiences encounter content, discovery mechanisms dictate not only what becomes popular but what remains unseen. Understanding which signals correlate with exposure helps to show how content like music circulates and whether that visibility is the result of listener demand, structural advantage, or platform intervention.</p>
+</section>
+</section>
+<section id="data-available-on-github" class="level1">
+<h1>Data (Available on Github)</h1>
+<p>Pulled from Spotify <span class="math inline">\(^2\)</span> via its API in August 2025— the data includes track metadata, playlist membership <span class="math inline">\(^1,\)</span> artist metadata, and other factors that may help to explain exposure.</p>
+<p>I chose about 27 different k-pop groups of various debuts, management companies, discography and popularities. These include: <span style="color: #86B35D;"><a href="https://en.wikipedia.org/wiki/BTS">BTS</a>, <a href="https://en.wikipedia.org/wiki/Blackpink">BLACKPINK</a>, <a href="https://en.wikipedia.org/wiki/Twice">TWICE</a>, <a href="https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)">SEVENTEEN</a>, <a href="https://en.wikipedia.org/wiki/Stray_Kids">Stray Kids</a>, <a href="https://en.wikipedia.org/wiki/NCT_127">NCT 127</a>, <a href="https://en.wikipedia.org/wiki/NCT_Dream">NCT DREAM</a>, <a href="https://en.wikipedia.org/wiki/Enhypen">ENHYPEN</a>, <a href="https://en.wikipedia.org/wiki/Tomorrow_X_Together">TOMORROW X TOGETHER</a>, <a href="https://en.wikipedia.org/wiki/NewJeans">NewJeans</a>, <a href="https://en.wikipedia.org/wiki/Ive_(group)">IVE</a>, <a href="https://en.wikipedia.org/wiki/Itzy">ITZY</a>, <a href="https://en.wikipedia.org/wiki/I-dle">I-dle</a>, <a href="https://en.wikipedia.org/wiki/Ateez">ATEEZ</a>, <a href="https://en.wikipedia.org/wiki/Le_Sserafim">LE SSERAFIM</a>, <a href="https://en.wikipedia.org/wiki/Red_Velvet_(group)">Red Velvet</a>, <a href="https://en.wikipedia.org/wiki/Exo">EXO</a>, <a href="https://en.wikipedia.org/wiki/Shinee">SHINee</a>, <a href="https://en.wikipedia.org/wiki/STAYC">STAYC</a>, <a href="https://en.wikipedia.org/wiki/Babymonster">BABYMONSTER</a>, <a href="https://en.wikipedia.org/wiki/BoyNextDoor">BOYNEXTDOOR</a>, <a href="https://en.wikipedia.org/wiki/Nmixx">NMIXX</a>, <a href="https://en.wikipedia.org/wiki/Xikers">Xikers</a>, <a href="https://en.wikipedia.org/wiki/Kep1er">KEP1ER</a>, <a href="https://en.wikipedia.org/wiki/Cravity">CRAVITY</a>, <a href="https://en.wikipedia.org/wiki/Billlie">Billlie</a>, <a href="https://en.wikipedia.org/wiki/H1-Key">H1-KEY</a>,</span> and <span style="color: #86B35D;"><a href="https://en.wikipedia.org/wiki/Riize">RIIZE</a></span>. From these groups, I chose to include the top featured tracks on their individual Spotify pages.</p>
+<p><span style="color: #86B35D;"><span class="math inline">\(^1\)</span> One of the biggest limits is that when pulling from playlists on Spotify, we are restricted from pulling listening and other more specific data from Spotify. So we are limited to evaluating track membership from user/ third party or user created playlists.</span></p>
+<p><span style="color: #86B35D;"><span class="math inline">\(^2\)</span> Spotify as of 2024, has deprecated access to audio features, audio analysis, etc.</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>track_name</code></td>
+<td>Song Title - pulled 100 from the Billboard Hot 100 as of 7/15</td>
+</tr>
+<tr class="even">
+<td><code>artist</code></td>
+<td>Artist Name- the main listed artist on spotify</td>
+</tr>
+<tr class="odd">
+<td><code>duration_ms</code></td>
+<td>Length of Song in milliseconds</td>
+</tr>
+<tr class="even">
+<td><code>album</code></td>
+<td>Album name</td>
+</tr>
+<tr class="odd">
+<td><code>release_date</code></td>
+<td>Release Date of track</td>
+</tr>
+<tr class="even">
+<td><code>popularity</code></td>
+<td>track popularity score [0-100]. <span style="color: #86B35D;">According to Spotify: ‘The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are. Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g.&nbsp;the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity.’</span></td>
+</tr>
+<tr class="odd">
+<td><code>associated_kpop_group</code></td>
+<td>The actual k-pop group. Some of the entries are collaborations with other artists and have the collaborator listed as the main artist</td>
+</tr>
+<tr class="even">
+<td><code>spotify_track_id</code></td>
+<td>unique track id designated by Spotify</td>
+</tr>
+<tr class="odd">
+<td><code>artist_id</code></td>
+<td>unique id of associated k-pop group</td>
+</tr>
+<tr class="even">
+<td><code>artist_followers</code></td>
+<td>current count of followers of associated k-pop group</td>
+</tr>
+<tr class="odd">
+<td><code>artist_popularity</code></td>
+<td>scored popularity (0-100) of associated k-pop group</td>
+</tr>
+<tr class="even">
+<td><code>artist_genres</code></td>
+<td>LIST of the genres associated with associated k-pop group. These are usually k-pop but some are associated with several genres.</td>
+</tr>
+<tr class="odd">
+<td><code>user_playlist_count</code></td>
+<td>The number of publicly posted playlists</td>
+</tr>
+<tr class="even">
+<td><code>which_user_playlists</code></td>
+<td>if <code>user_playlist_count</code> &gt;0, this returns a LIST of the playlist ids being included as part of the count</td>
+</tr>
+<tr class="odd">
+<td><code>company</code></td>
+<td>Management company of k-pop group</td>
+</tr>
+<tr class="even">
+<td><code>big4</code></td>
+<td>coded variable (0,1) of whether company is a ‘big 4’ management company</td>
+</tr>
+<tr class="odd">
+<td><code>gender</code></td>
+<td>gender: M male; F female</td>
+</tr>
+<tr class="even">
+<td><code>debut</code></td>
+<td>Debut Date</td>
+</tr>
+<tr class="odd">
+<td><code>days_since_release</code></td>
+<td>Count of days since release date. Counted from 8/2/25.</td>
+</tr>
+<tr class="even">
+<td><code>age_days</code></td>
+<td>Days since Debut Date. Counted from 8/2/25.</td>
+</tr>
+<tr class="odd">
+<td><code>collab</code></td>
+<td>Coded factor of whether the track is a collaboration or not</td>
+</tr>
+<tr class="even">
+<td><code>playlist_exposure</code></td>
+<td>TARGET: coded [0,1] based on whether track is found in a playlist</td>
+</tr>
+<tr class="odd">
+<td><code>genre_kpop</code></td>
+<td>Coded genre category of those that include ‘kpop’ as part of the artist genre list. All included tracks are of the k-pop genre.</td>
+</tr>
+<tr class="even">
+<td><code>genre_noise_music</code></td>
+<td>Coded [0,1] genre category of those that include ‘noise music’ as part of the artist genre list.</td>
+</tr>
+<tr class="odd">
+<td><code>genre_k_rock</code></td>
+<td>Coded [0,1] genre category of those that include ‘k-rock’ as part of the artist genre list.</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+🎤　Further Detail On K-Pop Companies
+</summary>
+<p>The idol system in South Korea (and in other parts of East Asia) is how the entertainment industry develops and manages artists. It is often characterized as a factory system, as idol management companies are like record labels, talent agencies, and training schools all in one. They start by holding auditions to scout young talent (usually children) and if chosen, invest in them as they train in dance, singing and other skills necessary to maintain a proper pop star image. After what is often years of training, these management companies will choose to debut certain trainees as idols and manage group/ solo activities for these idols through producing songs, albums, &amp; choreography, marketing idol image, concept, &amp; fan engagement and managing tours, brand deals, &amp; media appearances.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/kpop/kpopindustrysample.png" class="img-fluid figure-img"></p>
+<figcaption>Mapping the relationships of the companies managing the idol groups being sampled. The big 4 are denoted by the large pink circles with the smaller firms (subsidiaries and mid-tier) being denoted by the smaller blue circles. The industry at large has 100s of firms (some subsidiaries of larger companies (while maintaining independence), some others are subsidiaries with more central support from its parent company, and others small/ independent managements that only manage a single group/soloist’s activities, etc.) In our data set, groups that are highly advertised as a Company group despite being managed by a subsidiary (i.e.&nbsp;Source Music is home to Le Sserafim but this group is considered a HYBE group) are marked as part of the Big4</figcaption>
+</figure>
+</div>
+<p>While there are many minutia that can be discussed about the idol system as a whole (the fact that debuted idols do not see any profit from their work until they manage to repay their training debt to their companies, etc.), one point that is incredibly important to understand is how costly it is for companies to produce new successful groups. Many idol management companies go bankrupt while trying to support their artists. As a result, it is often advantageous for idols to debut from a bigger company that has bigger budgets, stronger global promotion, and more stable fanbase growth versus from a smaller company where there may be more creative freedom but many more difficulties in building success. This becomes especially clear when we look at what companies debuted the idol groups from our sample.</p>
+</details>
+</section>
+<section id="what-songs-are-added-to-a-playlist-versus-not-added" class="level1">
+<h1>What songs are added to a playlist versus not added?</h1>
+<section id="how-much-exposure-exists-in-the-sample" class="level2">
+<h2 class="anchored" data-anchor-id="how-much-exposure-exists-in-the-sample">How much exposure exists in the sample?</h2>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:50%;">
+<p><img src="../images/kpop/howmanytracks.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p><img src="../images/kpop/playlistinclusion.png" class="img-fluid"></p>
+</div>
+</div>
+<p>From the sample of <span style="color: #86B35D;"><strong>269</strong></span> songs we are observing, playlist inclusion is relatively rare. Only <span style="color: #86B35D;"><strong>34</strong></span> songs (<span style="color: #86B35D;"><strong>~13%</strong></span>) were found on at least one user playlists on the observation date. This highlights that playlist exposure is not the norm for most tracks. Of the tracks included in playlists, inclusion is not uniform. While it is most common for that track to be included in only a single playlist, there are a number of exposed tracks that occur in multiple playlists, suggesting there may be certain qualities that influence exposure intensity.</p>
+</section>
+<section id="engagement-differences-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="engagement-differences-at-a-glance">Engagement Differences At A Glance</h2>
+<section id="track-popularity" class="level3">
+<h3 class="anchored" data-anchor-id="track-popularity">Track Popularity</h3>
+<p>Track popularity varies widely across the full sample, reflecting a mixture of niche and highly popular releases. Between the two groups (those with playlist exposure and those without playlist exposure), the tracks with playlist exposure have a higher mean.</p>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:50%;">
+<p><img src="../images/kpop/popdist.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p><img src="../images/kpop/trackincl.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Tracks included in user playlists show a much higher central tendency and reduced variance. While non-playlisted tracks span a broad range of scores, those included in playlists cluster towards the upper end of the distribution, indicating that playlist exposure is concentrated among high-engagement songs.</p>
+<p>As track listening patterns and listening recency are both major factors in Spotify’s algorithm to calculate the popularity score, this factor will likely have one of the strongest effects on playlist exposure, a hypothesis later confirmed in the results. Given that track popularity is partially driven by artist-level engagement, another question to consider is whether playlist exposure reflects artist stature more broadly.</p>
+</section>
+<section id="who-gets-added-to-the-playlist" class="level3">
+<h3 class="anchored" data-anchor-id="who-gets-added-to-the-playlist">Who Gets Added to The Playlist?</h3>
+<section id="by-company" class="level4">
+<h4 class="anchored" data-anchor-id="by-company">By Company</h4>
+<p>The very system that produces and manages k-pop idols has grown and become very complicated in recent years. The Hallyu Wave across the world has inspired a global fascination with Korean culture and thus great investment into its pop culture. With that great wealth resulting in both market consolidation and portfolio diversification, 4 major companies dominate the idol market: SM Entertainment, YG Entertainment, JYP Entertainment, and HYBE. These companies are informally known as “The Big 4”. For the purposes of this analysis, a Big 4 group is defined as a group claimed by one of the major players, regardless of subsidiary management.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/kpop/circle.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>User playlist inclusion is concentrated among tracks from Big 4 affiliated companies, but varies widely across independent/ other companies</figcaption>
+</figure>
+</div>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:50%;">
+<p>(Often these are subsidiaries that give up independent power in exchange for resources.) If the subsidiary label has independent decision-making power, the group is not considered part of the Big 4. In the sample, <span style="color: #86B35D;"><strong>59.5%</strong></span> of groups (<span style="color: #86B35D;"><strong>16</strong></span>) are claimed by a Big 4 Company. Of those groups, <span style="color: #86B35D;"><strong>14.4%</strong></span> of their tracks are included in playlists. Of the groups not associated with a Big 4 or whose management operates independently of a Big 4, about <span style="color: #86B35D;"><strong>10.1%</strong></span> of their tracks end up user playlists. While the difference is small, it suggests that institutional visibility may provide a marginal advantage.</p>
+</div><div class="column" style="width:50%;">
+<p><img src="../images/kpop/expocomp.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="by-gender" class="level4">
+<h4 class="anchored" data-anchor-id="by-gender">By Gender</h4>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:50%;">
+<p><img src="../images/kpop/expogender.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p>As referenced earlier, gender is relatively balanced in this sample. Girl Groups make up <span style="color: #86B35D;"><strong>51.7%</strong></span> of the sample (boy groups <span style="color: #86B35D;"><strong>48.3%</strong></span>). Market-wise, boy groups usually have higher album sales and larger scale world tours while girl groups frequent Korean music charts and are more popular with the general Korean public. Music-wise, girl groups and boy groups release different styles of music in order to appeal to their target demographics. In spite of all this, with the ongoing evolution of society at large, girl groups have risen in their global appeal like <em>Blackpink</em> and <em>New Jeans</em>.</p>
+</div>
+</div>
+<p>The increased appeal may be what is being observed in the plot above where <span style="color: #86B35D;"><strong>18.0%</strong></span> of sampled girl groups have a track featured on a playlist while only <span style="color: #86B35D;"><strong>6.9%</strong></span> of sampled boy groups have a track featured on a user playlist. This difference motivates the inclusion of gender as a structural control in later models.</p>
+</section>
+</section>
+<section id="is-exposure-just-age-and-fame" class="level3">
+<h3 class="anchored" data-anchor-id="is-exposure-just-age-and-fame">Is Exposure Just Age and Fame?</h3>
+<section id="by-artist-popularity" class="level4">
+<h4 class="anchored" data-anchor-id="by-artist-popularity">By Artist Popularity</h4>
+<p>K-pop in comparison to other genres is pretty famous for very loyal fandoms (a good comparison would be Taylor Swift’s Swifties.) As such dedication is vital to revenue growth for management companies (loyal fans participate in intensive purchasing of albums, merch, and tickets along with paid access for ‘closeness’ to idols through exclusive content and events.) As a result, loyal fandoms can significantly influence listening behavior of tracks, regardless of their quality.</p>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:50%;">
+<p>There is an expectation given that artist_popularity and popularity are so strongly correlated (track popularity is also used to help calculate artist popularity) that we will see similar behavior when comparing playlist exposure groups. To some extent, this is true. The average artist popularity for those included in a user playlist is about <span style="color: #86B35D;"><strong>80</strong></span>. The average artist popularity for those not included in a playlist is <span style="color: #86B35D;"><strong>70</strong></span>. This difference though is likely the result of a large proportion of playlisted tracks with artist popularity scores of about <span style="color: #86B35D;"><strong>85</strong></span>.</p>
+</div><div class="column" style="width:50%;">
+<p><img src="../images/kpop/artistpop.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="by-age" class="level4">
+<h4 class="anchored" data-anchor-id="by-age">By Age</h4>
+<div class="columns" style="display: flex; gap: 1rem;">
+<div class="column" style="width:50%;">
+<p><img src="../images/kpop/artistage.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p>When looking at how long the artist has been active (age_days) and playlist exposure, there is a possibility that we are also looking at the influence of artist popularity as well. As it often takes time for groups to build up their cult followings or to hit their success point, younger groups are often at a disadvantage when it comes to engagement. But older groups may also have difficulty as they do not release music as frequently and may be overlooked by fans in favor of more recent debuts.</p>
+</div>
+</div>
+<p>As noted in the plot above, tracks included in playlists come from groups with a median age of <span style="color: #86B35D;"><strong>2554</strong></span> days (<span style="color: #86B35D;"><strong>~7 years</strong></span>). While those not included in a playlist have a median age of <span style="color: #86B35D;"><strong>1724</strong></span> days (<span style="color: #86B35D;"><strong>~4.7 years</strong></span>). Funnily enough, most groups sign an initial 7 year contract with their companies when debuting. It is a common point for groups to disband or to split up.</p>
+</section>
+</section>
+<section id="maybe-it-was-just-the-track" class="level3">
+<h3 class="anchored" data-anchor-id="maybe-it-was-just-the-track">Maybe it was Just the Track?</h3>
+<section id="by-recency" class="level4">
+<h4 class="anchored" data-anchor-id="by-recency">By Recency</h4>
+<p>One feature that may influence playlist exposure may be how recently a track was released. In K-Pop, the month or so following the release of a single or album is filled with promotions on social media, music shows, etc. All in the hopes of generating listens and increasing album sales. From the sample, average track age does not differ significantly by playlist exposure. However the more concentrated distribution among playlisted tracks suggests a mild preference for more recent increases.</p>
+<p><img src="../images/kpop/recency.png" class="img-fluid" style="width:80.0%"></p>
+</section>
+<section id="by-duration" class="level4">
+<h4 class="anchored" data-anchor-id="by-duration">By Duration</h4>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:50%;">
+<p>The average charting song on Spotify in 2024 was about 3 minutes, 15 seconds shorter than the average song in 2023. The shortening of charting songs in recent years is seen as the result of changes in songwriting, listening technology, and even genre. Hip-hop and pop tracks are shorter in nature than ballads. In our data, a majority of tracks range from <span style="color: #86B35D;"><strong>2.5 minutes</strong></span> (150,000 ms) to <span style="color: #86B35D;"><strong>3.33 minutes</strong></span> (250,000 ms). Even the most popular songs in our sample fall mostly into this range. Track length shows little difference between playlisted and non-playlisted tracks, suggesting that song length alone is not a meaningful driver of playlist inclusion within this genre.</p>
+</div><div class="column" style="width:50%;">
+<p><img src="../images/kpop/duration.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎤 In Brief
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Playlisted tracks are substantially more popular than non-playlisted tracks</li>
+<li>Artist Popularity mirrors this sentiment, likely due to overlap</li>
+<li>Big 4 affiliation and gender show modest but consistent differences</li>
+<li>Track length and release recency appear weakly related to playlist exposure</li>
+</ul>
+<p><em>These patterns prove that there is a need to disentangle whether playlist inclusion drives popularity or simply reflects pre-existing engagement.</em></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="what-features-if-any-contribute-to-the-likelihood-of-being-included-on-a-user-curated-playlist" class="level1">
+<h1>What Features (if any) Contribute to the Likelihood of Being Included on a User Curated Playlist?</h1>
+<p>As user playlists play a central role in music discovery, companies are more interested than ever in understanding which track and artist characteristics are associated with playlist inclusion. To answer this, we’ll turn to logistic regression. From the given data, I have chosen to focus specifically on features like <code>duration_ms</code>, <code>popularity</code>, <code>artist_followers</code> , <code>artist_popularity</code>, <code>big4</code> , <code>gender</code> , <code>days_since_release</code> , <code>age_days</code> , <code>collab</code> , <code>genre_noise_music</code> , and <code>genre_k_rock</code> .</p>
+<p>From this, I estimate three complementary models:</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎤 Models
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>A <strong><em>baseline logistic regression model</em></strong> for interpretability and controlling confounding variables</li>
+<li>A <strong><em>standardized logistic regression</em></strong> to compare relative effect sizes on a common scale</li>
+<li>An <strong><em>elastic net model</em></strong> to assess robustness and generalization under regularization</li>
+</ol>
+</div>
+</div>
+<p>Model performance is evaluated using AUC. Given the small sample size, AUC is primarily used for comparison purposes rather than performance evaluation.</p>
+<section id="model-a-baseline-auc-0.6778" class="level2">
+<h2 class="anchored" data-anchor-id="model-a-baseline-auc-0.6778">Model A: Baseline (AUC= 0.6778)</h2>
+<p>All relevant track and artist features were retained in the baseline logistic regression model to ensure interpretability and control for potential confounding, even if some predictors were not statistically significant individually. Sparse features like genre_k_rock are noted with caution.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Variable</strong></th>
+<th><strong>Log-Odds Estimate</strong></th>
+<th><strong>Odds</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>duration_ms</code></td>
+<td>-2.587e-06</td>
+<td>0.9999</td>
+</tr>
+<tr class="even">
+<td><code>popularity</code> *</td>
+<td>4.049e-01</td>
+<td>1.4991</td>
+</tr>
+<tr class="odd">
+<td><code>artist_followers</code></td>
+<td>8.544e-09</td>
+<td>1.0000</td>
+</tr>
+<tr class="even">
+<td><code>artist_popularity</code>*</td>
+<td>-1.571e-01</td>
+<td>0.8546</td>
+</tr>
+<tr class="odd">
+<td><code>big4</code> (1)*</td>
+<td>-1.514</td>
+<td>0.2201</td>
+</tr>
+<tr class="even">
+<td><code>gender</code>(M)*</td>
+<td>-1.778</td>
+<td>0.1689</td>
+</tr>
+<tr class="odd">
+<td><code>days_since_release</code></td>
+<td>-1.470e-04</td>
+<td>0.9999</td>
+</tr>
+<tr class="even">
+<td><code>age_days</code> *</td>
+<td>8.713e-04</td>
+<td>1.0009</td>
+</tr>
+<tr class="odd">
+<td><code>collab</code> (1)</td>
+<td>7.453e-01</td>
+<td>2.1070</td>
+</tr>
+<tr class="even">
+<td><code>genre_noise_music</code> (1)</td>
+<td>-3.482e-02</td>
+<td>0.9658</td>
+</tr>
+<tr class="odd">
+<td><code>genre_k_rock</code> (1)</td>
+<td>-9.451</td>
+<td>7.8583e-05</td>
+</tr>
+</tbody>
+</table>
+<p>Key drivers of playlist inclusion appear to be track popularity, collaboration tracks, Big 4 company status, and group gender.</p>
+<ul>
+<li><p>Track popularity has the strongest positive association with playlist inclusion</p>
+<blockquote class="blockquote">
+<p><em>For a 1 unit increase in popularity, the odds of being included on a user curated playlist increases by <span style="color: #86B35D;"><strong>~50%</strong></span></em></p>
+</blockquote></li>
+<li><p>Tracks from girl groups and non- Big 4 companies have higher odds in appearing in user playlists</p>
+<blockquote class="blockquote">
+<p><em>While tracks associated with Big 4 Companies occur more frequently in user playlists overall, when controlling for all the benefits that Big 4 affiliation provides like artist reach, Big 4 affiliation itself is associated with lower odds of playlist inclusion. This suggests that user curated playlists may favor independent or discovery oriented tracks, once visibility is accounted for.</em></p>
+</blockquote></li>
+<li><p>Collaborations are associated with much larger odds of being included in a playlist</p></li>
+<li><p>Track length, recency, and genre have only minimal effects after controlling for engagement and Artist features.</p></li>
+</ul>
+</section>
+<section id="model-b-standardized-logistic-regression" class="level2">
+<h2 class="anchored" data-anchor-id="model-b-standardized-logistic-regression">Model B: Standardized Logistic Regression</h2>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:55%;">
+<p><img src="../images/kpop/varimp.png" class="img-fluid"></p>
+</div><div class="column" style="width:45%;">
+<p>To compare features on a common scale, continuous variables are transformed logarithmically and all numeric variables are standardized. The standardized coefficients are not useful for direct odds interpretation, but instead for relative importance comparison.</p>
+<ul>
+<li>The variable importance plot, to the right, show that track popularity, group age, gender, Big 4 membership, and artist popularity contribute the strongest standardized effects.</li>
+<li>Model B’s results largely reinforce the conclusions from the initial model.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="model-c-elastic-net-model-auc0.7264" class="level2">
+<h2 class="anchored" data-anchor-id="model-c-elastic-net-model-auc0.7264">Model C: Elastic Net Model (AUC=0.7264)</h2>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:45%;">
+<p>Elastic Net regression confirms that <code>popularity</code>, <code>artist_followers</code>, <code>big4</code> , <code>gender</code> , <code>age_days</code> , and <code>collab</code> are the most stable under regularization, while features like&nbsp;<code>duration_ms</code>and sparse genre indicators are largely penalized out.</p>
+<p>Notably, <code>artist_popularity</code>, a feature considered significant in the previous 2 models is dropped. This suggests that <code>artist_popularity</code> ’s significance may be redundant compared to more granular engagement metrics like <code>artist_followers</code>, track popularity, or track features like <code>collab</code> .</p>
+</div><div class="column" style="width:55%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/kpop/coefpath.png" class="img-fluid figure-img"></p>
+<figcaption>Coefficient Path for Elastic Net. At the optimal lambda (dotted line), there are 6 variables that have not shrunk to 0.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Penalized Coefficient</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>popularity</code></td>
+<td>1.113506e-01</td>
+</tr>
+<tr class="even">
+<td><code>artist_followers</code></td>
+<td>8.149439e-09</td>
+</tr>
+<tr class="odd">
+<td><code>big4</code> (1)</td>
+<td>-4.013700e-01</td>
+</tr>
+<tr class="even">
+<td><code>gender</code> (M)</td>
+<td>-8.182169e-01</td>
+</tr>
+<tr class="odd">
+<td><code>age_days</code></td>
+<td>6.686525e-05</td>
+</tr>
+<tr class="even">
+<td><code>collab</code> (1)</td>
+<td>3.864981e-01</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎤 In Brief
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>Overall, observable engagement metrics and structural attributes, rather than composite popularity scores, provide the most robust signal for playlist inclusion.</em></p>
+</div>
+</div>
+</section>
+</section>
+<section id="do-engagement-differences-survive-after-controlling-for-track-characteristics" class="level1">
+<h1>Do Engagement Differences Survive After Controlling for Track Characteristics?</h1>
+<p>Having figured out which signals predict playlist inclusion, the next question is whether playlisted tracks truly differ in engagement after accounting for those same signals. As Spotify’s track popularity is calculated algorithmically, including both listening volume and recency, it’s important to differentiate between differences in actual popularity and the differences that continue once baseline artist and track characteristics are held constant.</p>
+<p>To address this, I estimate regression-adjusted models of track popularity, treating playlist exposure as the main predictor while controlling for track and artist features.</p>
+<section id="regression-adjustment" class="level2">
+<h2 class="anchored" data-anchor-id="regression-adjustment">Regression Adjustment</h2>
+<p>This approach adjusts for confounding variables like group age, company affiliation, and track recency, allowing for a more meaningful comparison between playlisted and non-playlisted tracks. Artist popularity will be excluded from this model, as track popularity is often incorporated in its calculation.</p>
+<p>Including all these confounders increases the model’s explanatory power: the adjusted <span class="math inline">\(R^2\)</span> grows from <span style="color: #86B35D;"><strong>0.1122</strong></span> , in the unadjusted version, to <span style="color: #86B35D;"><strong>0.5084</strong></span>, in the fully adjusted version. This suggests that much of the variation in track popularity is explained by structural and content-related features, rather than playlist exposure alone. Even after adjustment, playlist exposure continues to be statistically significant in predicting track popularity, as is track length, artist followers, Big 4 affiliation, and gender.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Coefficient</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>playlist_exposure</code></td>
+<td>6.917</td>
+</tr>
+<tr class="even">
+<td><code>duration_ms</code></td>
+<td>-1.308e-04</td>
+</tr>
+<tr class="odd">
+<td><code>artist_followers</code></td>
+<td>2.332e-07</td>
+</tr>
+<tr class="even">
+<td><code>big4</code></td>
+<td>1.049e+01</td>
+</tr>
+<tr class="odd">
+<td><code>gender</code></td>
+<td>-3.056</td>
+</tr>
+<tr class="even">
+<td><code>days_since_release</code></td>
+<td>1.456e-04</td>
+</tr>
+<tr class="odd">
+<td><code>age_days</code></td>
+<td>3.341e-05</td>
+</tr>
+<tr class="even">
+<td><code>collab</code></td>
+<td>1.241</td>
+</tr>
+<tr class="odd">
+<td><code>genre_noise_music</code></td>
+<td>2.359e-01</td>
+</tr>
+<tr class="even">
+<td><code>genre_k_rock</code></td>
+<td>-4.549</td>
+</tr>
+</tbody>
+</table>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/kpop/adjass.png" class="img-fluid figure-img"></p>
+<figcaption>Playlist exposure remains positively associated with track popularity after adjustment but is not the strongest effect.</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<p>To better compare all the features , I standardized all numeric variables and transformed all continuous variables. The standardized estimates (left) show that playlist exposure continues to be significant, along with <code>duration_ms</code>, <code>artist_followers</code> , <code>big4</code> , <code>days_since_release</code> , <code>age_days</code> , and <code>genre_noise_music</code> .</p>
+<p>The magnitudes of the coefficients show that playlist exposure explains incremental engagement differences, rather than dominating the popularity signal. Suggesting that playlist inclusion is only associated with track engagement and does not determine it.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎤 In Brief
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>Playlist inclusion and popularity reinforce one another and are likely to be influenced by unobserved promotional, social, and algorithmic mechanisms.</em></p>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>This analysis examined how engagement, artist, and track characteristics relate to user playlist curation from one of the most experimental and strictly managed genres in modern music. Rather than assuming that playlist exposure is caused by engagement, I modeled it in both directions: first, to understand what characteristics help predict playlist exposure through logistic regression and second, whether engagement differences continue after applying a regression adjustment framework controlling for those same characteristics.</p>
+<p>The results showed that while the composite track popularity was the strongest predictor of playlist exposure, it does not fully determine it. Even after adjustment, it becomes clear that playlist inclusion and popularity are closely related and likely influenced by unobserved mechanisms.</p>
+<section id="key-takeaways-1" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaways-1">Key Takeaways:</h2>
+<ul>
+<li>Playlist inclusion is relatively rare (only 13% of the sample), but is concentrated among tracks with high popularity scores.</li>
+<li>Track popularity is a strong predictor of inclusion, but does not fully explain engagement differences.</li>
+<li>Even after controlling for available track and artist features, playlisted tracks show higher engagement.</li>
+<li>Big 4 affiliation and gender show consistent associations even after adjustment, suggesting the influence of structural dynamics beyond content.</li>
+<li>Playlist inclusion and popularity reinforce one another and are likely to be influenced by unobserved promotional, social, and algorithmic mechanisms.</li>
+<li>Findings provide a framework for operationalizing content discovery signals to inform platform strategy, recommendation optimization, and audience development decisions.</li>
+</ul>
+</section>
+<section id="limitations-future-directions" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-future-directions">Limitations &amp; Future Directions</h2>
+<p>Although this analysis was able to examine the relationship between observable signals and playlist inclusion, some limitations need to be addressed. First, is the scale of the sample. The gathered data is from a singular day in 2025 and covers a limited set of groups. This restricted the ability to see how engagement may have changed from first release to after playlist inclusion and how it may have continued to change throughout the course of its existence. As a result, this analysis focused on patterns of exposure and engagement rather than causal inference.</p>
+<p>Second, is how platform opacity restricts feature availability. One of the key discoveries from feature importance emphasized how composite popularity scores are a less robust signal than engagement metrics and structural attributes of tracks. Spotify does not release data about listening volume, a key factor only mentioned in the track popularity algorithm documentation. Spotify has also deprecated developer access to track features like valence (music positiveness) and danceability along with visibility into official <em>Spotify</em> playlists. Given the stylistic diversity of K-pop (bubble gum pop to reggaeton to disco), the inclusion of track features such as these could have enhanced vision into track characteristics as a result of structural dynamics. Future work could also compare the differences between professionally curated playlists and user curated playlists, in an effort to further individual discovery behavior from platform-driven exposure.</p>
+<p>Overall, this analysis provides a framework for examining how observable engagement and structural signals interact within platform algorithms. While exploratory, it sets a basis for future work ranging from longitudinal study to experiments that further disentangle causality between exposure and engagement. These signals could also be operationalized through monitoring and dashboards of the ongoing measurement of key discovery signals for stakeholder use in data-driven decision-making.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

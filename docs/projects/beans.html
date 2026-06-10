@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2021-01-01">
+<meta name="description" content="R, Forecasting, Gradient Boosting">
+
+<title>Forecasts of Post-COVID Pulse Prices in the Global South – Christine Papas</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9ac9e5047384fda4bfd1aed3a58c4b74.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="Forecasts of Post-COVID Pulse Prices in the Global South – Christine Papas">
+<meta property="og:description" content="R, Forecasting, Gradient Boosting">
+<meta property="og:image" content="../images/beans/pulses.jpg">
+<meta property="og:site_name" content="Christine Papas">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Christine Papas</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://www.linkedin.com/in/papaschristine8828/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://github.com/s-Yk88" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Forecasts of Post-COVID Pulse Prices in the Global South</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">data-science</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    R, Forecasting, Gradient Boosting
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 1, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><img src="../images/beans/pulses.jpg" class="img-fluid"></p>
+<section id="summary" class="level1">
+<h1>Summary:</h1>
+<p>Pulses have been considered an environmentally-friendly and inexpensive alternative to commodities like meat, ideal in helping to combat food insecurity. The FFPI <em>(</em>FAO Food Price Index— measure of international food commodity prices) suggests that effects of the COVID-19 pandemic have caused dramatic price surges in all food groups, including pulses, that threaten our ability to feed the growing global population. But is it really just the impacts of the pandemic that threatens this ability?</p>
+<p>In order to answer the ultimate question of: <em>“How did observed pulse prices differ from pre-pandemic price dynamics during COVID-19?”</em>, I wanted to focus on the price forecasts of this food group in countries most susceptible to food insecurity as determined by the <em>World Food Programme</em> (WFP). I examine food price data from the WFP to create time series forecasts via gradient boosting of what could have happened to the prices of select pulses in the developing world if the pandemic had not occurred.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🫘 Key Takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Forecasts predicted overall lower pricing for Pulses, suggesting the Pandemic may have triggered a series of unobserved events resulting in actual prices rising more than expected</li>
+<li>Cyclical behaviors occurring in both forecasts and actual pricing suggest that there are deeper long term issues that need to be addressed in order to maintain viability of pulses as a food source.</li>
+</ul>
+</div>
+</div>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods:</h2>
+<ul>
+<li>Multi-Step Ahead Forecasting with Multiple Time Series</li>
+<li>Nested Cross Validation</li>
+</ul>
+</section>
+<section id="model" class="level2">
+<h2 class="anchored" data-anchor-id="model">Model:</h2>
+<ul>
+<li>Gradient Boosted Tree Model</li>
+</ul>
+</section>
+<section id="tools-packages-used" class="level2">
+<h2 class="anchored" data-anchor-id="tools-packages-used">Tools/ Packages Used:</h2>
+<ul>
+<li><strong>Google BigQuery</strong></li>
+<li><strong>R Studio 4.1.0</strong> (Forecasts &amp; Forecast Visualizations)
+<ul>
+<li><code>ggplot2</code> <code>lubridate</code> <code>tidyverse</code> <code>forecastML</code> <code>dtplyr</code> <code>glmnet</code> <code>xgboost</code></li>
+</ul></li>
+<li>Python 3.13.3 (2025 EDA Update)
+<ul>
+<li><code>pandas</code> <code>numpy</code> <code>pygwalker</code></li>
+</ul></li>
+<li>Kanaries AI
+<ul>
+<li><code>graphic walker</code></li>
+</ul></li>
+</ul>
+<p><a href="https://github.com/s-Yk88/pulseprice" target="_blank"> <i class="bi bi-github"></i> View Code on GitHub </a></p>
+</section>
+</section>
+<section id="background" class="level1">
+<h1>Background</h1>
+<section id="food-security-the-environment" class="level2">
+<h2 class="anchored" data-anchor-id="food-security-the-environment">Food Security &amp; The Environment</h2>
+<p>Food production, food security, and climate change are inexplicably linked. According to the WFP,</p>
+<blockquote class="blockquote">
+<p><span style="color: #86B35D;"><em>“ The Intergovernmental Panel on Climate Change in its 5th Assessment Report</em> is clear: the advent of more frequent and intense disasters caused by climate change could negatively affect people’s ability to produce, access and consume food. “*</span></p>
+</blockquote>
+<p>Ultimately impacting the price instability of food and putting the food security of vulnerable communities at risk. Thus, we must establish urgent and sustainable measures to ease pressure on agricultural ecosystems.</p>
+<p><em>To read more about the 5th Assessment Report: </em>PCC. 2015. Climate change 2014: Synthesis report. Geneva, Intergovernmental Panel on Climate Change.*</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/food-emissions-supply-chain.png" class="img-fluid figure-img"></p>
+<figcaption>Source: <a href="https://ourworldindata.org/grapher/food-emissions-supply-chain">Our World in Data</a></figcaption>
+</figure>
+</div>
+<p>One quarter of the world’s greenhouse gas (GHG) emissions come from food production. So it stands to reason that a possible start to a solution for food insecurity exacerbated by climate change would be shifting our focus to alternative food sources that emit less greenhouse gases into our atmosphere. As shown by the chart above, meat &amp; dairy products like beef (beef herd), cheese &amp; beef (dairy herd) emit large amounts of CO2 into the atmosphere. In comparison, Peas, other pulses, and groundnuts emit much lower amounts of CO2.</p>
+</section>
+<section id="the-potential-of-pulses" class="level2">
+<h2 class="anchored" data-anchor-id="the-potential-of-pulses">The Potential of Pulses</h2>
+<p>As the previous chart suggests, pulses could help fight food insecurity in vulnerable areas. For those unfamiliar, Pulses are a type of legume that is limited to crops harvested solely for dry grain, thereby excluding leguminous crops harvested green for food, crops used mainly for oil extraction, or crops that are used exclusively for sowing purposes.</p>
+<p>The potential of pulses lie in their ability to be <span style="color: #86B35D;"><strong>nutritious, inexpensive, and environmentally-friendly.</strong></span></p>
+<ul>
+<li>They are vital sources of protein and micronutrients like amino acids, iron and zinc, making them a great alternative for GHG emitters like meat and dairy. As protein and energy deficiencies are often the culprit for widespread malnutrition, this makes them an even more ideal solution.</li>
+<li>They are significantly <strong>less expensive</strong> than animal proteins, making them more accessible to marginalized communities. They also have a long shelf life, meaning they produce very little food waste, if any, and can be stored for long periods of time without losing their nutrition.</li>
+<li>The broad genetic diversity of these leguminous crops allow for the selection of climate-resilient varieties and their nitrogen fixing ability improves soil quality and produces a low carbon footprint</li>
+</ul>
+</section>
+<section id="the-reality-of-2020---2021-covid-19-pandemic-and-its-effect-on-the-food-supply" class="level2">
+<h2 class="anchored" data-anchor-id="the-reality-of-2020---2021-covid-19-pandemic-and-its-effect-on-the-food-supply">The Reality of 2020 - 2021: COVID-19 Pandemic and its Effect on the Food Supply</h2>
+<p>Fast forward to 2021 and our world is dealing with a series of unprecedented events: a deadly pandemic and climate disasters that are becoming increasingly more extreme, just to name a few.</p>
+<p>This does not help set the stage towards improving global food security. According to the World Bank:</p>
+<blockquote class="blockquote">
+<p><span style="color: #86B35D;">“even before COVID-19 reduced incomes and disrupted supply chains, chronic and acute hunger were on the rise due to various factors including conflict, socio-economic conditions, natural hazards, climate change and pests. COVID-19 impacts have led to severe and widespread increases in global food insecurity, affecting vulnerable households in almost every country, with impacts expected to continue through 2021, into 2022, and possibly beyond.”</span></p>
+</blockquote>
+<section id="pulse-prices-surge" class="level3">
+<h3 class="anchored" data-anchor-id="pulse-prices-surge">Pulse Prices Surge</h3>
+<p>One of the most visible effects of the pandemic for many consumers have been the price surges of goods including pulses. This has been most visible in countries like India and Bangladesh where a majority of their populations rely on a pulses as plant-sourced protein. As these countries have historically struggled with producing enough supply to satisfy domestic demand, they often supplement this by importing large quantities of pulses. The pandemic’s effects like disrupted supply chains and increased demand for goods have only aggravated a huge weakness in global food production.</p>
+<p><img src="../images/beans/pulsepriceindia.png" class="img-fluid"></p>
+<p>In April of 2021, <em>India</em> experienced sudden price increases of their top two most consumed pulses: chana (gram) and tur (pigeon peas) going from 100 Rp per kg to 130 Rp per kg causing the Indian government to remove quantitative restrictions on the import of pulses and signing contracts with various countries in order to import even more supply.</p>
+<p><img src="../images/beans/bangpulseprice.png" class="img-fluid"></p>
+<p>In Bangladesh’s largest market, prices of imported pulses from Australia and Canada surge Tk15 a kg in 2 weeks which many importers claimed was a result of the increase of booking price of all pulses in the international market</p>
+</section>
+<section id="fao-food-price-indices" class="level3">
+<h3 class="anchored" data-anchor-id="fao-food-price-indices">FAO Food Price Indices</h3>
+<div class="columns" style="gap: 1rem;">
+<div class="column" style="width:50%;">
+<p><img src="../images/beans/allindice.png" class="img-fluid" style="width:100.0%"></p>
+</div><div class="column" style="width:50%;">
+<p><img src="../images/beans/foodsindice.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+<p>Source: <a href="https://www.fao.org/worldfoodsituation/foodpricesindex/en/">FAO</a></p>
+<p>Pulses are not the only food group experiencing price surges. Like the World Bank’s report suggested, all food commodity prices surged over the course of the past year and a half. The Food and Agriculture Organization (FAO) body of the UN has been tracking such price changes with their food price and food commodity price indices. Food prices experienced minor fluctuations throughout 2018 and 2019 but for the most part stayed stable. The end of 2020 through 2021 is where the biggest changes in the FPI occur. We can see from the graph on the right that while all tracked commodities experienced increases in pricing, none experienced a more dramatic increase than vegetable oils and sugar.</p>
+</section>
+</section>
+</section>
+<section id="focus-of-analysis" class="level1">
+<h1>Focus of Analysis</h1>
+<p>Pulses have been considered an environmentally-friendly and inexpensive alternative to commodities like meat, ideal in helping to combat food insecurity. The FFPI suggests that effects of the COVID-19 pandemic have caused dramatic price surges in all food groups, including pulses, that threaten our ability to feed the growing global population. But is it really just the impacts of the pandemic that threatens this ability?</p>
+<p>In order to answer the ultimate question of: <strong>“<em>How did observed pulse prices differ from pre-pandemic price dynamics during COVID-19?</em>”,</strong> I wanted to focus on the price forecasts of this food group in countries most susceptible to food insecurity as determined by the WFP.</p>
+</section>
+<section id="original-data" class="level1">
+<h1>Original Data</h1>
+<p>The data I chose to analyze to answer my question about ‘How did observed pulse prices differ from pre-pandemic price dynamics during COVID-19?’ is the World Food Programme’s collection of food price data from 78 different countries that they operate in. While this global prices dataset covers the prices of over 465 different products in 1759 markets from 1992-2018, the WFP did not collect the price data of all the same products from each country at the same time. Thus, there is some disconnect between countries. However, rather than focus on a single country and price data over a limited time, I hope that I can use this dataset to gain a greater understanding of the behavior of price over the most vulnerable parts of the world as a whole over a longer period of time. To get a better picture of the data, I have joined this dataset with datasets about the geographic location of the included markets and commodity category data that will help us focus in on our food group of interest. Both of these datasets have also been collated by the WFP.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🫘 Quick Facts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>WFP’s record of food prices in 78 countries that they service</li>
+<li>901,179 records from 1992-2018</li>
+<li>Prices of over 465 unique products in 1759 different markets</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="methodology" class="level1">
+<h1>Methodology</h1>
+<p>In order to examine the question of <strong>“<em>How did observed pulse prices differ from pre-pandemic price dynamics during COVID-19?</em>”,</strong> I will use:</p>
+<ul>
+<li><strong><em>Google BigQuery</em></strong> to transform dataset to that of just Pulse price data and extract time series</li>
+<li><strong><em>Google Data Studio</em></strong> to create visualizations of data</li>
+<li><strong><em>R Studio</em></strong> (Ver 4.1.0) to perform time series forecasting with a gradient boosted tree model to visualize what could have happened to prices in 2019 - 2021 given data that ended in 2018.</li>
+</ul>
+</section>
+<section id="focusing-on-the-pulses" class="level1">
+<h1>Focusing On The Pulses</h1>
+<p>(Updated May 2025)</p>
+<section id="top-20-most-sold-pulses-in-the-global-south" class="level3">
+<h3 class="anchored" data-anchor-id="top-20-most-sold-pulses-in-the-global-south">Top 20 Most Sold Pulses in the Global South</h3>
+<iframe src="https://kanaries.net/analytics/chart/ens4ajttrh1c/share?theme=light&amp;embed=yes" width="100%" height="600px" frameborder="0" allowfullscreen="">
+</iframe>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🫘 In Brief
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>n = 176,752</strong></li>
+<li><strong>Year Range: 1994-2021</strong></li>
+<li><strong>56 countries</strong></li>
+<li><strong>1229 Different Markets</strong></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="where-are-the-prices-coming-from" class="level3">
+<h3 class="anchored" data-anchor-id="where-are-the-prices-coming-from">Where are the Prices Coming From?</h3>
+<iframe src="https://kanaries.net/analytics/chart/ens6j25nery8/share?theme=light&amp;embed=yes" width="100%" height="600px" frameborder="0" allowfullscreen="">
+</iframe>
+<p>As we can see, the pulses data is limited to countries in Africa, the Middle East, Southeast Asia, Central and South America.</p>
+</section>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<p>The following includes a sample of the generated forecasts compared to the actual price performance of pulses in select markets.</p>
+<p><a href="https://docs.google.com/document/d/1xo8jKavzRP8o68iKwkEMSi13YGSqap9Sn9hf7eN0gvI/edit?tab=t.0" target="_blank"> <i class="bi bi-google"></i> View Full Results on Google Drive </a></p>
+<section id="masur-lentils-retail---bangladesh" class="level2">
+<h2 class="anchored" data-anchor-id="masur-lentils-retail---bangladesh">Masur Lentils (Retail) - Bangladesh</h2>
+<section id="forecast" class="level3">
+<h3 class="anchored" data-anchor-id="forecast"><em>Forecast:</em></h3>
+<p>In the visualization below, I include both the full data + forecast (left) and a zoom into the forecast (right)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/masurbang.png" class="img-fluid figure-img"></p>
+<figcaption>Currency: BDT (Bangladeshi Taka)</figcaption>
+</figure>
+</div>
+<p>Masur Lentils price data was observed in Southeast Asian states like Bangladesh, India &amp; Pakistan. The above forecast is based on price data from 6 markets in Bangladesh from October 2005 to August 2018. The September 2018 to August 2021 forecast was created using 3 validation windows of 24 months each, separated by 24 months.</p>
+</section>
+<section id="actual" class="level3">
+<h3 class="anchored" data-anchor-id="actual"><em>Actual:</em></h3>
+<p><img src="../images/beans/masurbangactual.png" class="img-fluid"></p>
+<p>This is what actually happened to masur lentil prices in Bangladesh from October 2018 to October 2021. As I expected to see in most of the graphs of actual prices, the 36 month time series shows prices on an upward slope, increasing especially around mid 2020 and continuing into and through 2021. The average price of masur lentils hits a peak right around April-May 2020 at 85 &amp; 84 BDT respectively. (A level we do not see the price hit again until October 2021) This peak happens to occur around the same time that the FAO’s FFPI begins to show rapid increase in price changes of food. This is different from what was forecasted, where the peak begins mid 2019 and does not recover till mid 2020 where it proceeds to stay pretty level at around 65 BDT for the rest of he forecast.</p>
+</section>
+</section>
+<section id="niebe-beans-retail---burkina-faso" class="level2">
+<h2 class="anchored" data-anchor-id="niebe-beans-retail---burkina-faso">Niebe Beans (Retail) - Burkina Faso</h2>
+<section id="forecast-1" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-1"><em>Forecast:</em></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/niebeburkina.png" class="img-fluid figure-img"></p>
+<figcaption>Currency: XOF (West African CFA Franc)</figcaption>
+</figure>
+</div>
+<p>Niebe Beans retail price data was observed in North African States like Burkina Faso, Central African Republic &amp; Mali. The forecast above is based on prices from 20 different markets in Burkina Faso from September 2012 to August 2018. The September 2018 to August 2021 forecast was created using 3 validation windows of 12 months separated by 12 months.</p>
+</section>
+<section id="actual-1" class="level3">
+<h3 class="anchored" data-anchor-id="actual-1"><em>Actual</em></h3>
+<p><img src="../images/beans/niebeburkinaactual.png" class="img-fluid"></p>
+<p>This is what actually happened to the prices of niebe beans from September 2018 to September 2021. As noted in the actual price of masur lentils, niebe bean prices are also steadily rising through this period. In both the forecast and the actual prices we see a seasonal dip that occurs in late 2018, 2019 and 2020. Actual prices range from about 250 to 510 XOF. Forecasted prices ranged from about 275 to 480 XOF.</p>
+</section>
+</section>
+<section id="beans-retail---burundi" class="level2">
+<h2 class="anchored" data-anchor-id="beans-retail---burundi">Beans (Retail) - Burundi</h2>
+<section id="forecast-2" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-2"><em>Forecast:</em></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/beansburundi.png" class="img-fluid figure-img"></p>
+<figcaption>Currency: BIF (Burundian Franc)</figcaption>
+</figure>
+</div>
+<p>Beans retail price data was observed in Central &amp; South African States like Burundi, Democratic Republic of the Congo, Malawi, Uganda &amp; Zimbabwe and in Northern African states like Libya. The above forecast is based on prices from 8 different markets in Burundi from January 2003 to September 2018. The October 2018 to September 2021 forecast was constructed using 4 validation windows of 24 months separated by 30 months.</p>
+</section>
+<section id="actual-2" class="level3">
+<h3 class="anchored" data-anchor-id="actual-2"><em>Actual:</em></h3>
+<p><img src="../images/beans/beansburundiactual.png" class="img-fluid"></p>
+<p>Again, we see an upwards trend in the actual retail prices of beans in Burundi. Both forecast and actual prices experiencing multiple dips the first being around mid 2019 and the last being in prices starting in early 2021 and begin to recover from it August/ September 2021. In fact, it seems like the forecast captured the same seasonality and cycles that occur in the actual price of beans just at a lower level. The forecast ranged between 1000 to 1300 BIF with the first dip hitting about 750 BIF and the last dip hitting an absolute low of about 670. The actual prices ranged from 1000 to 1650 BIF with the first dip hitting a low of about 850 BIF and the last dip hitting about 950 BIF.</p>
+</section>
+</section>
+<section id="imported-lentils-wholesale---colombia" class="level2">
+<h2 class="anchored" data-anchor-id="imported-lentils-wholesale---colombia">Imported Lentils (Wholesale) - Colombia</h2>
+<section id="forecast-3" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-3"><em>Forecast:</em></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/importlentcol.png" class="img-fluid figure-img"></p>
+<figcaption>Currency: COP (Colombian Peso)</figcaption>
+</figure>
+</div>
+<p>This is the price forecast of wholesale imported lentils given data from 5 markets in Colombia from February 2005 to August 2018. As many of the recent price surges in food products was occurring in the prices of imported food products, I thought this would be one of the most interesting forecasts to look at. The September 2018 to August 2021 forecast was constructed through the use of 5 validation windows, each 24 months long, separated by 6 months.</p>
+</section>
+<section id="actual-3" class="level3">
+<h3 class="anchored" data-anchor-id="actual-3"><em>Actual</em></h3>
+<p><img src="../images/beans/importlentcolactual.png" class="img-fluid"></p>
+<p>Actual prices experience a slight downwards trend, steadily decreasing from 3000 COP and hits a sudden dip mid-2019 at about 2000 COP. The rest of pictured period shows an upwards trend that peaks at 5250 COP. In the forecasted prices from the previous slide, forecasts differ greatly between markets. One (yellow) hits a peak of 6500 COP. The rest of the markets stay steady through the 36 month horizon ranging from about 2750 COP to 4250 COP.</p>
+</section>
+</section>
+<section id="black-beans-retail--haiti" class="level2">
+<h2 class="anchored" data-anchor-id="black-beans-retail--haiti">Black Beans (Retail)- Haiti</h2>
+<section id="forecast-4" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-4"><em>Forecast:</em></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/bbhaiti.png" class="img-fluid figure-img"></p>
+<figcaption>Currency: HTG (Haitian Gourde)</figcaption>
+</figure>
+</div>
+<p>This forecast is based on prices from 9 markets in Haiti from September 2012 to August 2018. The September 2018 to August 2021 forecast was constructed through the use of 2 validation windows, each 30 months in length, separated by 6 months.</p>
+<ul>
+<li><span style="color: #86B35D;">Mamit / Marmite: a bag</span></li>
+</ul>
+</section>
+<section id="actual-4" class="level3">
+<h3 class="anchored" data-anchor-id="actual-4"><em>Actual</em></h3>
+<p><img src="../images/beans/bbhaitiactual.png" class="img-fluid"></p>
+<p>Actual Black bean prices in Haiti experienced an overall upwards trend starting around January - February 2019, hitting a peak of about 700 HTG in August 2020. The forecast hits a similar peak around late 2020 and early 2021 at 390 HTG. If one looks very closely in the period from May 2018 to January 2019, there is a slight downwards trend that is also captured in the forecast but is not illustrated to be as dramatic of a dip as in the forecast (about 250 HTG). Actual prices range from 300 to 700 HTG. Forecasted prices range from 250 HTG to 390 HTG.</p>
+</section>
+</section>
+<section id="lentils-retail---india" class="level2">
+<h2 class="anchored" data-anchor-id="lentils-retail---india">Lentils (Retail) - India</h2>
+<section id="forecast-5" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-5"><em>Forecast</em></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/lentind.png" class="img-fluid figure-img"></p>
+<figcaption>Currency: INR (Indian Rupee)</figcaption>
+</figure>
+</div>
+<p>The Lentils retail prices I observed were from India, Yemen and countries surrounding the Mediterranean like Egypt, Syria &amp; Turkey. The forecast displayed above is that of time series data from 56 markets in India from April 2013 to August 2018. The September 2018 to August 2021 was constructed through the use of 3 validation windows, each 12 months long, separated by 6 months.</p>
+</section>
+<section id="actual-5" class="level3">
+<h3 class="anchored" data-anchor-id="actual-5"><em>Actual</em></h3>
+<p><img src="../images/beans/lentindact.png" class="img-fluid"></p>
+<p>Actual prices of Indian lentils experienced an upwards trend in the pictured 36 months. There is a sudden change in level that occurs June 2019 that shifts the range from 60-70 INR to 85 - 110 INR. Forecasted prices also experienced a steady upwards trend that caused prices to range from 50-95 INR.</p>
+</section>
+</section>
+<section id="split-dry-peas-retail---lesotho" class="level2">
+<h2 class="anchored" data-anchor-id="split-dry-peas-retail---lesotho">Split, Dry Peas (Retail) - Lesotho</h2>
+<section id="forecast-6" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-6"><em>Forecast</em></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/pealeso.png" class="img-fluid figure-img"></p>
+<figcaption>Currency: Lesotho Loti (LSL)</figcaption>
+</figure>
+</div>
+<p>This forecast is based on the price data from 10 markets in Lesotho from August 2010 to August 2018. The September 2018 to August 2021 was constructed using 3 validation windows, each 24 months long, and separated by 9 months each.</p>
+</section>
+<section id="actual-6" class="level3">
+<h3 class="anchored" data-anchor-id="actual-6"><em>Actual</em></h3>
+<p><img src="../images/beans/pealesoact.png" class="img-fluid"></p>
+<p>The behavior of actual split, dry pea prices in Lesotho is very similar to what was forecasted except for one major exception: the dip/surge that occurs early/mid-2021. In the actual prices, we can see a cycle of a sudden peak that is first seen in January 2017 that reoccurs in May 2021 (about 25 LSL). In the forecasted prices, there is a dip (about 8.5 LSL)that occurs at almost the same time as the peak discussed. Forecasted prices stayed level through the 36 month horizon, keeping mostly to a range of 10 -15 LSL (besides the dip). Actual prices also kept to the same trend and level except for the sudden peak discussed earlier.</p>
+</section>
+</section>
+<section id="cowpeas-retail---mozambique" class="level2">
+<h2 class="anchored" data-anchor-id="cowpeas-retail---mozambique">Cowpeas (Retail) - Mozambique</h2>
+<section id="forecast-7" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-7"><em>Forecast</em></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/cowpeamoz.png" class="img-fluid figure-img"></p>
+<figcaption>Currency: Metical (MZN)</figcaption>
+</figure>
+</div>
+<p>This forecast is based on the prices of 25 markets in Mozambique from May 2011 to August 2018. Constructed using 3 validation windows, each 18 months long, separated by 9 months each.</p>
+</section>
+<section id="actual-7" class="level3">
+<h3 class="anchored" data-anchor-id="actual-7"><em>Actual</em></h3>
+<p><img src="../images/beans/cowpeamozact.png" class="img-fluid"></p>
+<p>The actual prices of cowpeas in Mozambique mostly trends upwards after a slight decline from September 2018 to November 2018. This changes sometime right before the start of 2021 where there is a slightly deeper dip than usual. Interestingly, a very similar thing happens around the same time in the forecast as well. The forecast also shows seasonal highs around the early parts of each year that coincide with the similar annual peaks that are seen in the actual prices above.</p>
+</section>
+</section>
+<section id="chickpeas-retail---tajikistan" class="level2">
+<h2 class="anchored" data-anchor-id="chickpeas-retail---tajikistan">Chickpeas (Retail) - Tajikistan</h2>
+<section id="forecast-8" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-8"><em>Forecast:</em></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/cptaj.png" class="img-fluid figure-img"></p>
+<figcaption>Currency: TJS (Tajikistani Somoni)</figcaption>
+</figure>
+</div>
+<p>Chickpea retail price data was observed in Libya, the State of Palestine, the Syrian Arab Republic, Tajikistan and Turkey. This forecast is based on prices from 5 markets in Tajikistan from May 2016 to August 2018. Constructed using 3 validation windows, each 8 months long, separated by 2 months.</p>
+</section>
+<section id="actual-8" class="level3">
+<h3 class="anchored" data-anchor-id="actual-8"><em>Actual</em></h3>
+<p><img src="../images/beans/cptajact.png" class="img-fluid"></p>
+<p>As one can see, the actual prices of chickpeas in Tajikistan behaved very differently from what the forecast predicted. Actual prices experienced a downwards trend to about April 2020, hitting an absolute minimum of about 13.5 TJS. From May 2020 to the September 2021, prices experience an upwards trend, hitting a maximum of 17 TJS. The forecast seems to have depended on seasonality for prediction as most behavior that causes the different market time series to deviate from the same prices occurs at the beginning of each year. The one thing that the forecast and actual prices seem to agree on is how prices do not change too significantly from October 2018 to about February 2019.</p>
+</section>
+</section>
+<section id="white-beans-retail---turkey" class="level2">
+<h2 class="anchored" data-anchor-id="white-beans-retail---turkey">White Beans (Retail) - Turkey</h2>
+<section id="forecast-9" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-9"><em>Forecast</em></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/wbturkey.png" class="img-fluid figure-img"></p>
+<figcaption>Currency: TRY (Turkish Lira)</figcaption>
+</figure>
+</div>
+<p>I observed white beans retail price data from the Republic of the Congo, Djibouti, Iraq, Syria, Turkey and Yemen. The above forecast is based on prices from 4 markets in Turkey from May 2013 to August 2018. Constructed using 3 validation windows, each 18 months long, separated by 4 months.</p>
+</section>
+<section id="actual-9" class="level3">
+<h3 class="anchored" data-anchor-id="actual-9"><em>Actual</em></h3>
+<p><img src="../images/beans/wbturkeyact.png" class="img-fluid"></p>
+<p>This is what actually happened to white bean prices in Turkey from September 2018 to September 2021. Prices trend upward through the entire period growing from around 9 TRY, peaking at around 17 TRY in September &amp; November 2021. It almost looks like prices could have reached a slightly higher peak around July 2020 (the absolute peak in the forecast occurs right before the major dip) but the WFP does not have the data to confirm whether this happened. Like actual prices, the forecast experiences a major dip (about 7 TRY). The difference being actual prices dipped in October 2020 (to 2 TRY) while forecasted prices dramatically dipped around January and February 2020. Forecasted prices range between 7-9 TRY.</p>
+</section>
+</section>
+<section id="dry-beans-retail---zambia" class="level2">
+<h2 class="anchored" data-anchor-id="dry-beans-retail---zambia">Dry Beans (Retail) - Zambia</h2>
+<section id="forecast-10" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-10"><em>Forecast:</em></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beans/dbzambia.png" class="img-fluid figure-img"></p>
+<figcaption>Currency: Zambian Kwacha (ZMW)</figcaption>
+</figure>
+</div>
+<p>The dry beans retail price data I observed was from African states like Gambia, Kenya &amp; Zambia. The above forecast is based on prices from 69 markets in Zambia from January 2012 to August 2018. Constructed using 3 validation windows, each 19 months long, separated by 11 months each.</p>
+</section>
+<section id="actual-10" class="level3">
+<h3 class="anchored" data-anchor-id="actual-10"><em>Actual</em></h3>
+<p><img src="../images/beans/dbzambiaactual.png" class="img-fluid"></p>
+<p>The actual prices of dry beans in Zambia stay pretty level (around 15-20 ZMW) but start to trend upward around early 2020, hitting a peak at 32 ZMW that plateaus through May 2021. The forecast differs slightly where most markets stayed level through the entire 36 month horizon, ranging between 5-25 ZMW. However, there is one market in our forecast that hits a peak of about 55 ZMW around the same time the actual prices hit their peak in mid-2021.</p>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="key-takeaways-1" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaways-1">Key Takeaways</h2>
+<ul>
+<li>Forecasts predicted overall lower pricing for Pulses, suggesting the Pandemic may have triggered a series of unobserved events resulting in actual prices rising more than expected</li>
+<li>Cyclical behaviors occurring in both forecasts and actual pricing suggest that there are deeper long term issues that need to be addressed in order to maintain viability of pulses as a food source.</li>
+</ul>
+<p>While as we predicted, prices of pulses could have been consistently lower if the pandemic had not occurred, the forecasts picked up cyclical behaviors that (for the most part) also occurred in the plots of actual prices. A further study could be done in what was already occurring in pulse production that is causing the cyclical behavior as that could give a better indication of long term issues in pulse production that threaten its potential.</p>
+</section>
+</section>
+<section id="work-cited" class="level1">
+<h1>Work Cited</h1>
+<section id="data-available-in-github-repo" class="level2">
+<h2 class="anchored" data-anchor-id="data-available-in-github-repo">Data (Available in GitHub Repo):</h2>
+<p>WFP - World Food Programme. (2021). Global Food Prices Database [CSV] Retrieved from <a href="https://data.humdata.org/dataset/wfp-food-prices">https://data.humdata.org/dataset/wfp-food-prices</a></p>
+<p>WFP- World Food Programme. (2021) Global WFP commodities [CSV] Retrieved from <a href="https://data.humdata.org/dataset/global-wfp-food-prices">https://data.humdata.org/dataset/global-wfp-food-prices</a></p>
+<p>WFP - World Food Programme. (2021). Global WFP markets [CSV] Retrieved from <a href="https://data.humdata.org/dataset/global-wfp-food-prices">https://data.humdata.org/dataset/global-wfp-food-prices</a></p>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources:</h2>
+<p>“About the International Year of Pulses.” <em>About | 2016 International Year of Pulses</em>, Food and Agriculture Organization of the UN, <a href="https://www.fao.org/pulses-2016/about/en/">https://www.fao.org/pulses-2016/about/en/</a></p>
+<p>“Climate and Food Security Analyses: World Food Programme.” <em>UN World Food Programme</em>, <a href="https://www.wfp.org/climate-and-food-security-analyses">https://www.wfp.org/climate-and-food-security-analyses</a></p>
+<p>“Economic: Prices - Dataviz: WFP - VAM.” <em>WFP | Vam Food Security Analysis</em>, World Food Programme, <a href="https://dataviz.vam.wfp.org/economic_explorer/prices">https://dataviz.vam.wfp.org/economic_explorer/prices</a></p>
+<p>“FAO Food Price Index.” <em>FAO Food Price Index | World Food Situation | Food and Agriculture Organization of the United Nations</em>, <a href="https://www.fao.org/worldfoodsituation/foodpricesindex/en/">https://www.fao.org/worldfoodsituation/foodpricesindex/en/</a></p>
+<p>Faruque, Omar. “Prices of Pulses Surge up to TK15 a Kg in Two Weeks.” <em>The Business Standard</em>, The Business Standard, 10 Sept.&nbsp;2021, <a href="https://www.tbsnews.net/markets/prices-pulses-surge-tk15-kg-two-weeks-300775">https://www.tbsnews.net/markets/prices-pulses-surge-tk15-kg-two-weeks-300775</a></p>
+<p>Mishra, Vivek, et al.&nbsp;“Pulse Puzzle 2021.” <em>Down To Earth</em>, DownToEarth, 2 Sept.&nbsp;2021, <a href="https://www.downtoearth.org.in/news/food/pulse-puzzle-2021-78749">https://www.downtoearth.org.in/news/food/pulse-puzzle-2021-78749</a></p>
+<p>Pulses and Climate Change - Fao.org.” <em>Food and Agriculture Organization of the United Nations</em>, Food and Agriculture Organization of the United Nations, Feb.&nbsp;2021, <a href="http://www.fao.org/3/i5426e/i5426e.pdf">http://www.fao.org/3/i5426e/i5426e.pdf</a></p>
+<p>“Pulses for Food Security and Nutrition - Home | Food and …” <em>Global Forum on Food Security and Nutrition</em>, Food and Agriculture Organization of the UN, Dec.&nbsp;2016, <a href="http://www.fao.org/3/i6690e/i6690e.pdf">http://www.fao.org/3/i6690e/i6690e.pdf</a></p>
+<p>Redell, Nickalus. “Direct Forecasting with Multiple Time Series.” <em>Cran.r-Project</em>, 5 May 2020, <a href="https://cran.r-project.org/web/packages/forecastML/vignettes/grouped_forecast.html">https://cran.r-project.org/web/packages/forecastML/vignettes/grouped_forecast.html</a></p>
+<p>Ritchie, Hannah. “You Want to Reduce the Carbon Footprint of Your Food? Focus on What You Eat, Not Whether Your Food Is Local.” <em>Our World in Data</em>, Global Change Data Lab, 24 Jan.&nbsp;2020, <a href="https://ourworldindata.org/food-choice-vs-eating-local">https://ourworldindata.org/food-choice-vs-eating-local</a></p>
+<p>Shankdhar, Shubham. “Why the Prices of Pulses Are Soaring.” <em>India Today</em>, Living Media India Limited, 6 July 2021, <a href="https://www.indiatoday.in/india-today-insight/story/why-the-prices-of-pulses-are-soaring-1824583-2021-07-06">https://www.indiatoday.in/india-today-insight/story/why-the-prices-of-pulses-are-soaring-1824583-2021-07-06</a></p>
+<p>World Bank Group. “Food Security and Covid-19.” <em>World Bank</em>, World Bank Group, 21 Oct.&nbsp;2021, <a href="https://www.worldbank.org/en/topic/agriculture/brief/food-security-and-covid-19">https://www.worldbank.org/en/topic/agriculture/brief/food-security-and-covid-19</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

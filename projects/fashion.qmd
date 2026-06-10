@@ -1,0 +1,105 @@
+---
+title: "Vestiaire Collective Listings Through Dashboards"
+date: 2025-06
+categories: [data-science]
+description: "Tableau, Dashboard"
+image: "../images/fashion/still.png"
+---
+
+
+# Context:
+
+In an effort to better understand retail analytics, I took a look at a dataset containing 900k listings from Vestiaire Collective, an online marketplace for buying and reselling pre-owned luxury fashion items. Within these dashboards, I take a look at their marketplace, the products, the brands offered, the sellers providing the goods, and the key part of their supply chain: their warehouses.
+
+::: {.callout-tip title="Key Takeaways"}
+
+- While customers are eyeing products from lesser known brands, much of the supply on Vestiaire comes from well known luxury fashion houses like Chanel.
+- The most liked brands predominately sell accessories or shoes in contrast to the most listed item: men’s clothing
+- There are multiple warehouses in the US and France, home to the most sellers, but each country has an extra warehouse that is not commonly used.
+:::
+
+## Methods
+
+- Data Visualization
+
+## Tools/ Packages Used:
+
+- Python 3.13.3
+    - `pandas`
+- Tableau Public
+
+
+# Data (via Kaggle)
+
+In this analysis, we are focusing on the product listings from Vestiaire Collective, an online marketplace for buying and selling pre-owned luxury fashion items. It was originally scraped using Python and the `Hrequests` library.
+
+::: {.callout-tip title="Quick Facts"}
+
+- 900k Vestiaire Listings
+- 36 variables
+- 8300 Unique Brands
+:::
+
+| Variable | Description |
+| --- | --- |
+| `product_id` | ID of Product |
+| `product_type` | The type of product |
+| `product_name` | Name of the product |
+| `product_description` | Description of the Product |
+| `product_keywords` | Product keywords |
+| `product_gender_target` | Gender target of the product |
+| `product_category` | category of the product |
+| `product_season` | Season of the product |
+| `product_condition` | Condition of the product |
+| `product_like_count` | Number of likes given by users to product |
+| `sold` | Boolean response to ‘Has this product sold?’ |
+| `reserved` | Boolean response to ‘Is the product reserved?’ |
+| `available` | Boolean response to “Is the product still available?” This generally means that item is listed online after a digital review process but is still held by the seller. |
+| `in_stock` | Boolean response to “Is the product still in stock?” On Vestiaire, “in-stock” items are those that are currently available for purchase directly from Vestiaire, meaning Vestiaire has the item, has physically authenticated it, and it’s ready to to be shipped. If an item is “ not in stock”, the Vestiaire may not have it currently or the item may be awaiting shipment, or any number of other reasons. |
+| `should_be_gone` | Boolean response to “Should the product be gone?” Vestiaire launched a “cost per wear” metric meant to promote the long term value of fashion and help consumers better understand the true cost of an item considering lifespan, resale value and use frequency. If an item is marked as `should_be_gone` , then the item is considered fast fashion. |
+| `brand_id` | ID of the brand |
+| `brand_name` | Name of the brand |
+| `brand_url` | URL of the brand |
+| `product_material` | Product material |
+| `product_color` | Product color |
+| `price_usd` | Price in US Dollar |
+| `seller_price` | Seller price of the product. This is the price set by sellers before the platform attaches fees that impacts the final price and the sellers earnings |
+| `seller_earning` | The seller earnings if product is sold |
+| `seller_badge` | What kind of badge level does the seller have? |
+| `has_cross_border_fees` | Are there cross-border fees? |
+| `buyers_fees` | Buyer Fees |
+| `warehouse_name` | Warehouse location |
+| `seller_id` | ID of the seller |
+| `seller_username` | Seller Username |
+| `usually_ships_within` | Number of days Seller usually ships within |
+| `seller_country` | Seller Country |
+| `seller_products_sold` | Number of products sold by seller |
+| `seller_num_products_listed` | Number of products listed by seller |
+| `seller_community_rank` | Seller Community Ranking |
+| `seller_num_followers` | Number of followers a seller has |
+| `seller_pass_rate` |  |
+
+/*image*/
+
+After eliminating some variables that will not be useful during this analysis like product_keywords, brand_url, product_description, I found that about 18.7% of the rows included NAs. As this is a good chunk of the data, it’s important to check when this may be happening and if there may be an issue with the data. We find that usually_ships_within, has_cross_border_fees , buyers_fees make up the  most NA occurrences.
+
+Ultimately, I will fill some of these NAs with the mode or median (like in the case of `usually_ships_within` and other numeric variables) or even replacing all NAs with’ False’ (in the case of `has_cross_border_fees` where the only filled in values are ‘True’). After doing this, we find that the NA rate drops down to 0.05% leaving us with 900,468 listings. The remainder of the rows with NAs will be dropped from the data.
+
+Along with the NAs, some of the boolean variables only returned single responses (i.e. all false or all true), so I chose to remove them (`sold` , `reserved` ,`should_be_gone` ) as well.
+
+# Focus
+- Market Overview
+- Brands Offered
+- Product Insights
+- Seller Dynamics
+- Warehouse & Their Inventories
+
+# Dashboard
+<a href="https://public.tableau.com/app/profile/christine.papas6468/viz/edit_17501088364260/vestiaire" target="_blank">
+  <i class="bi bi-barchart"></i> View on Tableau Public
+</a>
+
+```{=html}
+<div class='tableauPlaceholder' id='viz1780640466261' style='position: relative'><noscript><a href='#'><img alt='Vestiaire Collective ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ed&#47;edit_17501088364260&#47;vestiaire&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='edit_17501088364260&#47;vestiaire' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ed&#47;edit_17501088364260&#47;vestiaire&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1780640466261');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+```
