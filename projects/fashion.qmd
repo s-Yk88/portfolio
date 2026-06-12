@@ -3,7 +3,7 @@ title: "Vestiaire Collective Listings Through Dashboards"
 date: 2025-06
 categories: [data-science]
 description: "Tableau, Dashboard"
-image: "../images/fashion/still.png"
+image: "../images/fashion/still1.png"
 ---
 
 
@@ -79,11 +79,17 @@ In this analysis, we are focusing on the product listings from Vestiaire Collect
 | `seller_num_followers` | Number of followers a seller has |
 | `seller_pass_rate` |  |
 
-/*image*/
 
+
+:::: {.columns style="gap: 1rem;"}
+::: {.column width="50%"}
+![](../images/fashion/na.png)
+:::
+::: {.column width="50%"}
 After eliminating some variables that will not be useful during this analysis like product_keywords, brand_url, product_description, I found that about 18.7% of the rows included NAs. As this is a good chunk of the data, it’s important to check when this may be happening and if there may be an issue with the data. We find that usually_ships_within, has_cross_border_fees , buyers_fees make up the  most NA occurrences.
-
-Ultimately, I will fill some of these NAs with the mode or median (like in the case of `usually_ships_within` and other numeric variables) or even replacing all NAs with’ False’ (in the case of `has_cross_border_fees` where the only filled in values are ‘True’). After doing this, we find that the NA rate drops down to 0.05% leaving us with 900,468 listings. The remainder of the rows with NAs will be dropped from the data.
+:::
+::::
+Ultimately, I filled some of these NAs with the mode or median (like in the case of `usually_ships_within` and other numeric variables) or even replacing all NAs with’ False’ (in the case of `has_cross_border_fees` where the only filled in values are ‘True’). After doing this, we find that the NA rate drops down to 0.05% leaving us with 900,468 listings. The remainder of the rows with NAs will be dropped from the data.
 
 Along with the NAs, some of the boolean variables only returned single responses (i.e. all false or all true), so I chose to remove them (`sold` , `reserved` ,`should_be_gone` ) as well.
 

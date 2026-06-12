@@ -42,13 +42,6 @@
     "text": "Tools/ Packages Used:\n\nPython 3.13.3\n\npandas numpy matplotlib.pyplot statsmodel.stats pingouin\n\n\n  View Code on GitHub"
   },
   {
-    "objectID": "projects/cookiecats.html#in-brief",
-    "href": "projects/cookiecats.html#in-brief",
-    "title": "Improving Player Retention Through Experimental Design",
-    "section": "👾 In Brief",
-    "text": "👾 In Brief\n\nn= 90,189 players\nTarget Variables: sum_gamerounds retention_1 retention_7\nControl Group: gate_30 response group of version variable\nTest Group: gate_40 response group of version variable\nPlayers were randomly assigned at Install :::"
-  },
-  {
     "objectID": "projects/cookiecats.html#primary-question",
     "href": "projects/cookiecats.html#primary-question",
     "title": "Improving Player Retention Through Experimental Design",

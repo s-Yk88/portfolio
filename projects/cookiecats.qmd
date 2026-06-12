@@ -52,8 +52,8 @@ This dataset includes A/B test results of Cookie Cats, a mobile puzzle game from
 | **`retention_7`** | Did the player return to the game after 7 days? (Categorical [0,1]) |
 
 # Experiment Design
-::: {callout-tip icon="false"}
 
+::: {.callout-tip icon="false"}
 ## 👾 In Brief
 - n= 90,189 players
 - Target Variables:  `sum_gamerounds` `retention_1` `retention_7`
