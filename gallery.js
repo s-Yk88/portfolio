@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const wall = document.getElementById('gallery-wall');
     const projects = [];
     //cookiecats, kpop, fashion, beans
-    const baseUrl = window.location.origin;
+    //const baseUrl = window.location.origin;
+    const baseUrl = window.location.origin + (window.location.pathname.includes('portfolio') ? '/portfolio' : '');
     const frames = ['dark-wood','gilt', 'polaroid', 'dark-wood'];
     const sizes = ['medium','large', 'strip', 'medium'];
     const shapes =['landscape-rect','mural','narrow', 'oval-wide']; //rectangular, square, mural, narrow, oval-wide, oval-long
