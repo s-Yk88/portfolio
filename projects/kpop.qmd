@@ -1,7 +1,6 @@
 ---
-title: "Measuring Global Discovery Signals Associated with User Playlists "
+title: "Measuring Global Discovery Signals Associated with User Playlists (A K-Pop Case Study)"
 date: 2025-10
-subtitle: "A K-Pop Case Study"
 categories: [data-science]
 description: "Python, Regression, R"
 image: "../images/kpop/redvelvet.jpg"

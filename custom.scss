@@ -48,7 +48,7 @@
 
 
 
-//------------gallery wall----------------
+//------------**gallery wall**----------------
 
 //hide what the default grid looks like
 .quarto-listing {
@@ -58,11 +58,47 @@
 //-----the wall--------
 .gallery-wall {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); //minmax allows it to figure out the amount of rows that fit automatically-- less work later
-  gap: 2.5rem;
-  padding: 2rem 0;
+  grid-template-columns: 2fr 2fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  // grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+  //minmax allows it to figure out the amount of rows that fit automatically-- less work later
+  grid-template-areas:
+    "kpop kpop cookiecats cookiecats"
+    "kpop kpop fashion ."
+    ". beans fashion .";
+  gap: 1.5rem;
+  //padding: 2rem 0;
   align-items: start;//don't need to stretch cards to match each other
 }
+
+.piece-link:nth-child(1) { grid-area: cookiecats; }
+.piece-link:nth-child(2) { grid-area: kpop; }
+.piece-link:nth-child(3) { grid-area: fashion; }
+.piece-link:nth-child(4) { grid-area: beans; }
+
+
+.piece-link:nth-child(2) {
+  grid-area: kpop;
+  width: 100%;
+}
+.piece-link:nth-child(2) .piece {
+  width: 100%;
+}
+.piece-link:nth-child(2) .frame-outer {
+  width: 100%;
+}
+.piece-link:nth-child(2) .canvas {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+
+.piece-link:nth-child(3) {
+  grid-area: fashion;
+  align-self: stretch;
+}
+
 
 //-----------filter button--------------
 .filter-row {
@@ -119,6 +155,8 @@
     0 4px 18px rgba(0,0,0,0.2),
     0 1px 4px rgba(0,0,0,0.1);
   transition: box-shadow 0.3s ease;
+  position: relative;
+  overflow: visible;
 }
 
 .frame-outer.gilt {
@@ -143,6 +181,8 @@
 .frame-inner {
   padding: 4px;
   background: #F5F0E8;
+  //position: relative;
+  //overflow: hidden;
 }
 
 .canvas {
@@ -151,6 +191,125 @@
   object-fit: cover;
   display: block;
 }
+
+//---------sizing of hanging objects----
+// shape aspect-ratio overrides size aspect-ratio when both present
+// size only controls max-width in those cases
+
+.piece.large .canvas {
+  aspect-ratio: 16/9;
+  width: 100%;
+}
+.piece.medium .canvas {
+  aspect-ratio: 7/5;
+  width: 100%;
+}
+.piece.small .canvas {
+  aspect-ratio: 1/1;
+  width: 100%;
+}
+
+.piece.strip .canvas {
+  aspect-ratio: 2/3;
+  width: 100%;
+}
+.frame-inner.strip-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.strip-img {
+  width: 100%;
+  flex: 1;
+  object-fit: cover;
+  display: block;
+  min-height: 0;
+}
+.strip-divider {
+  width: 100%;
+  height: 3px;
+  background: #F5F0E8;
+  flex-shrink: 0;
+}
+
+//size limitations- size controls max-width
+
+//.piece.medium { max-width: 280px; }
+//.piece.strip { max-width: 160px; }
+//.piece.small { max-width: 200px; }
+
+//---shape of framing-----
+.piece.rectangular .canvas {
+  aspect-ratio: 4/3;
+}
+
+.piece.landscape-rect .canvas{
+  aspect-ratio: 21/9
+}
+
+.piece.narrow {
+  max-width: 180px;
+}
+.piece.narrow .canvas {
+  aspect-ratio: 2/3;
+}
+
+.piece.mural { 
+  max-width: 500px; 
+}
+.piece.mural .canvas {
+  aspect-ratio: 33/21;
+  width: 100%;
+}
+
+.piece.square .canvas {
+  aspect-ratio: 1/1;
+}
+
+//ovals
+// can also consider not including frame-outer if we want inner frame different from outer
+.piece.oval-wide .frame-outer {
+  border-radius: 50%;
+}
+.piece.oval-wide .frame-inner {
+  border-radius: 50%;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.piece.oval-wide .canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.piece.oval-long .frame-outer {
+  border-radius: 50%;
+}
+.piece.oval-long .frame-inner {
+  border-radius: 50%;
+  overflow: hidden;
+  aspect-ratio: 2/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.piece.oval-long .canvas{ //fill shape
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+//postcard?
+
 
 //-------------the placards------------------
 
@@ -213,6 +372,73 @@
   display: block;
 }
 
+// number plate
+.number-plate {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #8B6914, #C9A84C, #8B6914);
+  color: #F5F0E8;
+  font-size: 9px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  padding: 5px 14px;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+.frame-outer.polaroid .number-plate {
+  position: static;
+  transform: none;
+  background: none;
+  box-shadow: none;
+  color: #4A3C2C;
+  text-align: center;
+  padding: 4px 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+//hover metadata
+.metadata-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(44, 31, 20, 0.85);
+  color: #F5F0E8;
+  padding: 8px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.metadata-overlay .placard-title {
+  color: #F5F0E8;
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.2;
+  //margin-bottom: 2px;
+  //white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipses;
+
+}
+
+.piece:hover .metadata-overlay {
+  transform: translateY(0);
+}
+
+.frame-inner {
+  position: relative;
+  overflow: hidden;
+}
+
+.metadata-overlay .tag {
+  color: #F5F0E8;
+  border-color: rgba(255,255,255,0.3);
+}
 
 //--------------toggle list-------------------
 

@@ -4,6 +4,7 @@ date: 2025-06
 categories: [data-science]
 description: "Tableau, Dashboard"
 image: "../images/fashion/still1.png"
+image2: "../images/fashion/still2.png"
 ---
 
 

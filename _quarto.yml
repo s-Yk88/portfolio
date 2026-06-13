@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - images/
 website:
   google-analytics: G-JWDY0EZ9V2
   open-graph: true

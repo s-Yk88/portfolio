@@ -3,7 +3,10 @@ title: "Welcome to My Portfolio"
 listing:
     contents: projects
     type: grid
-    fields: [title, date, categories, description, image]
+    fields: [title, subtitle, date, categories, description, image, image2]
+    field-types:
+      subtitle: string
+      image2: string
     sort: "date desc"
 ---
 

@@ -3,7 +3,7 @@ title: "Improving Player Retention Through Experimental Design"
 date: 2025-12
 categories: [data-science]
 description: "Python, Experimental Design, A/B Testing"
-image: "../images/cookiecat/ck.png"
+image: "../images/cookiecat/cookiecat.png"
 ---
 
 ![](../images/cookiecat/cookiecat.png){width="100%"}
