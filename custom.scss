@@ -26,11 +26,19 @@ $body-color: #2C1F14;
 }
 
 .title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 400;
   letter-spacing: 0.04em;
 }
 
+//fancy body font
+.fancy p {
+  font-family: 'Fraunces', serif;
+}
+
+.fancy h1 {
+  font-family: 'Fraunces', serif;
+}
 //------the navigation bar-------
 
 .navbar {

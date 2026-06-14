@@ -2,12 +2,13 @@
 title: "About Me"
 about:
   template: marquee
+
 ---
 
 
 Hi, I'm Christine! 
 
-I'm a data scientist with a background in media analytics, currently developing my practice at the intersection of statistical modeling and visual storytelling. I'm drawn to work that makes complex systems legible: whether thats understanding how music discovery algorithms shape listening behavior or by how a game's real retention problem hid behind the experiment designed to solve it. My background in media means I think as much about how insights are communicated as how they're derived.
+I'm a data scientist with a background in media analytics, currently developing my practice at the intersection of statistical modeling and visual storytelling. I'm drawn to work that makes complex systems legible: whether that's understanding how music discovery algorithms shape listening behavior or realizing how a game's real retention problem was hiding behind the very experiment designed to solve it. My background in media means I think as much about how insights are communicated as how they're derived.
 
 Currently completing Georgia Tech's OMSA program part-time, with experience across the full analytics pipeline: from statistical modeling to dashboards and stakeholder communication. 
 
