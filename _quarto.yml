@@ -14,12 +14,17 @@ website:
         href: index.qmd
       - text: About Me
         href: about.qmd
-      
+    
     tools:
       - icon: linkedin
         href: https://www.linkedin.com/in/papaschristine8828/
       - icon: github
         href: https://github.com/s-Yk88
+
+  body-footer: |
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+    <script src="/portfolio/ui.js"></script>
+
 
 
 
@@ -30,6 +35,6 @@ format:
       - custom.scss
     css: styles.css
     toc: false
-    
+
 
 
